@@ -1,4 +1,13 @@
 <body>
+    
+    <div class="image-container">
+        <img class="blog-cover-image" src="/assets/home-cover.jpg" alt="">
+        
+        <p  data-aos="fade-up" data-aos-duration="3000" style="color: white;left: 5%; " class="intro-text">&nbsp;&nbsp;Join Our Blogging Community</p>
+        <p   class="typewriter-text" id="typewriter"></p>
+        <!-- HTML !-->
+        <button  class="button-68 ubtn" role="button" onclick="location.href='/editBlog'" style="background-color: white; color: rgb(3, 155, 92);">Start Your Journey</button>
+    </div>
 
     <div id="cookie-consent" class="cookie-consent hidden">
         <p>We use cookies to improve your experience. By using our site, you accept our use of cookies.</p>
@@ -82,7 +91,8 @@
                 <p class="right-contact-section-bold-text">Want To Travel Sikkim By Car?</p>
                 <p class="right-contact-section-light-text">Did you come here for something in particular or just
                     general Riker-bashing? <br> And blowing into</p>
-                <button type="button" class="contact-right-button">Visit Us</button>
+                <button type="button" onclick="window.location.href='https://car.com'"
+                    class="contact-right-button">Visit Us</button>
             </div>
             <div class="categories-section-right">
                 <h1 class="title-this-month category"><span class="feature-word">Categories</h1>
@@ -176,5 +186,48 @@
                 cookieConsent.classList.add('hidden');
             });
         });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            const texts = ["Creative Writing", "Personal Stories", "Expert Opinions", "Travel Diaries"];
+            let count = 0;
+            let index = 0;
+            let currentText = '';
+            let letter = '';
+            const typewriterElement = document.getElementById('typewriter');
+            let isDeleting = false;
+
+            function type() {
+                if (count === texts.length) {
+                    count = 0;
+                }
+                currentText = texts[count];
+
+                if (isDeleting) {
+                    letter = currentText.slice(0, --index);
+                } else {
+                    letter = currentText.slice(0, ++index);
+                }
+
+                typewriterElement.textContent = letter;
+                typewriterElement.style.opacity = 1;
+
+                if (!isDeleting && letter.length === currentText.length) {
+                    setTimeout(() => {
+                        isDeleting = true;
+                        setTimeout(type, 100); // Start deleting
+                    }, 2000); // Pause before starting to delete
+                } else if (isDeleting && letter.length === 0) {
+                    isDeleting = false;
+                    count++;
+                    setTimeout(type, 500); // Start typing next word
+                } else {
+                    setTimeout(type, isDeleting ? 50 : 100); // Adjust speed for typing and deleting
+                }
+            }
+
+            type();
+        })
     </script>
 </body>

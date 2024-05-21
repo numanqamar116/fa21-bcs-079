@@ -27,18 +27,19 @@
   font-family: 'Source Code Pro', monospace;
   font-size: 28px;
   color: rgba(255, 255, 255, 0.70);
-  margin: 0 auto;
+
   position: absolute;
-  top: 35%;
+  top: 25%;
   left: 30%;
   transform: translate(-50%, -60%);
   z-index: 2;
   font-family: 'Poppins', sans-serif;
   font-size: 6vw;
   color: white;
-  font-weight: 700;
+  font-weight: 900;
   
-
+  font-family: 'Freeman'; font-size: 7vw;
+  
 }
 
 /* Style for the typewriter text */
@@ -61,6 +62,8 @@
   font-family: 'Poppins', sans-serif;
   border-right: solid 3px rgb(255, 255, 255);
   transition: opacity 0.5s ease-in-out;
+  font-family: 'Cedarville Cursive';
+  
 }
 
 /* Style for the blog cover image */
