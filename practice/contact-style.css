@@ -1,0 +1,125 @@
+.contact-page {
+    background-image:url('./assets/contact-cover.jpeg');
+    background-size: cover;
+    width: 100%;
+    /* Optionally set width to 100% if it's not already set elsewhere */
+    height: 100vh;
+    /* Set height to cover the entire viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8vw;
+    background-color: rgba(255, 255, 255, 0.6);
+
+}
+
+.form-container .form-form-container {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+
+.form-container {
+    background-color: rgba(255, 255, 255, 0.864);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    border-radius: 1vw;
+    
+}
+
+.form-form-container {
+    justify-content: center;
+    align-items: center;
+    width: 35vw;
+    padding: 4vw;
+
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+
+}
+
+input {
+    width: 100%;
+
+
+}
+
+textarea {
+    width: 100%;
+}
+
+.input-top-l,
+.input-top-r,
+.input-middle,
+.input-bottom {
+    border: rgb(131, 131, 131) solid 2px;
+    margin-bottom: 2vw;
+    height: 3vw;
+    border-radius: 0.5vw;
+    outline: none;
+    font-size: 100%;
+    padding: 1vw;
+    background-color: #F9F9F9;
+
+}
+
+.input-top-l:focus,
+.input-top-r:focus,
+.input-middle:focus,
+.input-bottom:focus{
+    border: #4CAF4F solid 2px;
+    background-color: white
+}
+.submit-button{
+    width: 100%;
+   background-color: #4CAF4F;
+   margin-top: 1.5vw;
+   height: 2.5vw;
+   border-radius: 0.5vw;
+   outline: none;
+   border: none;
+   color: white;
+}
+.submit-button:focus{
+    outline: none;
+    border:rgb(62, 185, 62) 3px solid;
+}
+
+.textarea{
+    border: rgb(131, 131, 131) solid 2px;
+    border-radius: 0.5vw;
+    padding: 1vw;
+    background-color: #F9F9F9;
+}
+.textarea:focus{
+    background-color: white;
+    border: #4CAF4F solid 2px;
+    outline: none;
+
+}
+.error {
+    border: 1px solid red;
+}
+.contact-title{
+    font-size: 5vw;
+    font-weight: 600;
+    color: #4CAF4F;
+    opacity: 1 !important;
+}
+.icon-text{
+  
+    margin-top: 1vw;
+    margin-left: 1vw;
+  }
+  .contact-us-text{
+    background-color: rgba(255, 255, 255, 0.946);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    padding: 3vw;
+    border-radius: 1vw;
+    color: #717171;
+    font-family: 'Poppins';
+    font-size: 1.3vw; 
+  }
+  

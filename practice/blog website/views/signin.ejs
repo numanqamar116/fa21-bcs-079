@@ -1,0 +1,83 @@
+
+
+<div>
+    <div class="main-row" style="flex-direction: row-reverse;">
+        <div class="left-portion-sup">
+            <img class="sup-logo" src="../assets/logox.png" alt="" />
+            <h1 class="welcome-text">New Here?</h1>
+            <p class="welcome-desc">
+                Sign Up and discover great amount of new opportunities
+            </p>
+            <!-- HTML !-->
+            <button onclick="window.location.href='/signup'" class="sin-button" role="button">Sign Up</button>
+            <a style="position: absolute; bottom: 1vw;right: 1vw;color: white;" href="/">Continue as a guest <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="right-portion-sup">
+            <h1 class="create-acc-text">Login To Your Account </h1>
+            <p class="create-acc-desc">Login using social networks</p>
+            <div class="sup-icons-div">
+                <div class="signup-icons"><i class="fa-brands fa-facebook-f"></i></div>
+                <div class="signup-icons"><i class="fa-brands fa-google-plus-g"></i></div>
+                <div class="signup-icons"><i class="fa-brands fa-linkedin-in"></i></div>
+            </div>
+            <p class="create-acc-desc">or</p>
+
+            <form id="signupForm" action="/signin" method="POST">
+                <div class="input-control">
+                    <input name="email" type="text" class="form-control" id="email" placeholder="Email">
+                    <div style='color:#00968c;font-size:1vw' id="emailError" class="error"></div>
+                </div>
+
+                <div class="input-control">
+                    <input name="password" type="password" class="form-control" id="password" placeholder="Password">
+                    <div style='color:#00968c;font-size:1vw' id="passwordError" class="error"></div>
+                  
+                </div>
+                <br />
+                <% if (errorMessage) { %>
+                  <p  style="color: red;text-align: center;"><%= errorMessage %></p>
+              <% } %>
+                
+                <button class="sup-button" type="submit">Sign In</button>
+
+            </form>
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#signupForm').submit(function (event) {
+                // Prevent form submission
+                event.preventDefault();
+                // Reset previous error messages
+                $('.error').text('');
+
+                // Validate email
+                var email = $('#email').val();
+                if (!isValidEmail(email)) {
+                    $('#emailError').text('Please enter a valid email address');
+                    return;
+                }
+
+                // Validate password
+                var password = $('#password').val();
+                if (password.length < 6) {
+                    $('#passwordError').text('Password must be at least 6 characters long');
+                    return;
+                }
+
+                // Submit the form if validation passes
+                this.submit();
+            });
+
+            // Function to validate email format
+            function isValidEmail(email) {
+                var emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+                return emailRegex.test(email);
+            }
+        });
+    </script>
+</div>
+

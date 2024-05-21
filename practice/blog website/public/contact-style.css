@@ -1,0 +1,98 @@
+:root {
+    --std-margin: 1.5vw;
+    --primary-color: #009189;
+    --secondary-color:#DFF1F0;
+}
+
+.title-this-month.contact {
+    background-color: white !important;
+    text-align: center;
+    font-size: 1.8vw;
+    margin-bottom: 2vw;
+}
+.contact-container{
+    padding: 4vw;
+}
+
+.sub-contact-container {
+    display: flex;
+}
+
+.top-contact-input {
+    display: flex !important;
+    gap: 2vw;
+
+}
+
+.form-group {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5vw !important;
+    margin-bottom: var(--std-margin);
+}
+
+.btn.btn-secondary {
+    width: fit-content;
+    background-color: var(--primary-color);
+}
+.btn.btn-secondary:hover{
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+   
+}
+.error {
+    color: red; /* Set the color of error messages */
+    font-size: 0.8em; /* Adjust the font size */
+}
+.title-this-month.contact{
+    position: relative;
+}
+@media (max-width: 768px) {
+   
+    .first-image {
+        display: none;
+    }
+    .second-image{
+        padding-bottom: 5vw !important;
+        margin-top: 5vw !important;
+    }
+   .nav-item .nav-link{
+        font-size: 5vw !important;
+    }
+    
+    .title-this-month.contact{
+        font-size: 5vw !important;
+    }
+    .sub-contact-container.row{
+        display: flex;
+        flex-direction: column ;
+    }
+    .sub-contact-container{
+        display: flex;
+        flex-direction: column;
+    }
+   .right-sub-contact-container.col-sm{
+
+    width: 100vw !important;
+    font-size: 2vw;
+   }
+   p.text-contact-p {
+    width: auto; /* Adjust width for laptops */
+    /* Add any additional styles specific to laptops here */
+}
+
+} 
+@media (min-width: 769px) {
+   
+    .second-image {
+        display: none;
+    }
+    .first-image{
+        display: block;
+    }
+    p.text-contact-p {
+        width: 30vw; /* Default width for mobile screens */
+    }
+    
+    
+} 

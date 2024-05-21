@@ -1,0 +1,42 @@
+:root {
+    --std-margin: 1.5vw;
+    --primary-color: #009189;
+    --secondary-color:#DFF1F0;
+}
+
+.title-this-month.contact {
+    background-color: white !important;
+    text-align: center;
+    font-size: 1.8vw;
+    margin-bottom: 2vw;
+}
+.contact-container{
+    padding: 4vw;
+}
+
+.sub-contact-container {
+    display: flex;
+}
+
+.top-contact-input {
+    display: flex !important;
+    gap: 2vw;
+
+}
+
+.form-group {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5vw !important;
+    margin-bottom: var(--std-margin);
+}
+
+.btn.btn-secondary {
+    width: fit-content;
+    background-color: var(--primary-color);
+}
+.btn.btn-secondary:hover{
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+   
+}

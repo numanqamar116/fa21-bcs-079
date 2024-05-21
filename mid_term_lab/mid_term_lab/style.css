@@ -1,0 +1,108 @@
+.header-row-1{
+    display: flex;
+    justify-content:space-between ;
+    align-items: center;
+    margin-top: 0.4vw;
+    margin-left: 2vw;
+    margin-right:2vw ;
+   
+
+}
+.logo{
+    height: 4vw;
+}
+.header-button{
+background-color: white;
+border: 1px solid rgb(202, 196, 196);
+padding: 0.5vw 1vw 0.5vw 1vw;
+font-weight: 500;
+}
+.header-row-2{
+    display: flex;
+    justify-content: center;
+    gap: 1.4vw;
+    border-top: 1px solid rgb(202, 196, 196);
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    border-bottom: 1px solid rgb(202, 196, 196);
+   
+}
+.nav-header-2{
+    font-size: 1.1vw;
+  
+    font-weight: 700;
+    color: #333333;
+    cursor: pointer;
+   
+  
+}
+.main-portion{
+display: flex;
+padding-left: 10vw;
+padding-right: 10vw;
+margin-top: 1vw;
+gap: 2vw;
+}
+.left-main-portion{
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(126, 126, 126, 0.516);
+    padding-right: 2vw;
+}
+.focus-blog{
+    display: flex;
+    border-top: 2px solid black;
+    padding-top: 1vw;
+    margin-top: 1vw;
+    padding-bottom: 3.5vw;
+    
+}
+.focus-image{
+    height: 20vw;
+}
+.text-focus-blog{
+    display: flex;
+    flex-direction: column;
+    padding-right: 1vw;
+}
+.title-focus-blog{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 2vw;
+    color: black;
+}
+.desc-focus-blog{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.2vw;
+    color: rgba(93, 93, 93, 0.793);
+}
+.text-focus-blog-body{
+    font-size: 1vw;
+    font-weight: bold;
+}
+.right-img{
+    height: 12vw;
+}
+.sub-title-right{
+    font-size: 1vw;
+   
+}
+.sub-sub{
+    font-size: 1vw;
+    font-weight: bold;
+    width: 18vw;
+    padding-top: 1.5vw;
+    padding-bottom: 1.5vw;
+    border-top: 1px solid #33333329;
+}
+.title-right{
+    font-weight: bold;
+    font-size: 1.5vw;
+}
+.sub-title-right{
+    font-weight: bold;
+    margin-top: 1vw;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.3vw;
+    width: 18vw;
+}

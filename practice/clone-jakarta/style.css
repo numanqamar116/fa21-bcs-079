@@ -1,0 +1,29 @@
+.header{
+    display: flex;
+    flex-direction: column;
+    background-color: aliceblue;
+    padding-top: 3vw;
+    padding-bottom: 3vw;
+}
+.header-row-1{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+.header-row-2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo{
+    height: 4vw;
+}
+.fa-solid.fa-bars{
+font-size: 2.6vw;
+}
+.spano{
+display: flex;
+align-items: center;
+justify-content: center;
+}
