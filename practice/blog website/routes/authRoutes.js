@@ -13,7 +13,7 @@ router.post("/signup", (req, res) => {
     User.findOne({ email })
         .then(existingUser => {
             if (existingUser) {
-                res.render('signup', { errorMessage: 'Email already exists' });
+                res.render('signup', {title: "Sign Up", errorMessage: 'Email already exists', layout: "authLayout" });
             } else {
                 const newUser = new User({ name, email, password });
                 newUser.save()
@@ -48,10 +48,10 @@ router.post("/signin", (req, res) => {
                     req.session.user = user;
                     res.redirect('/home');
                 } else {
-                    res.render('signin', { errorMessage: 'Email or password incorrect' });
+                    res.render('signin', {title: "Sign In", errorMessage: 'Email or password incorrect', layout: "authLayout" });
                 }
             } else {
-                res.render('signin', { errorMessage: 'Email or password incorrect' });
+                res.render('signin', {title: "Sign In", errorMessage: 'Email or password incorrect', layout: "authLayout" });
             }
         })
         .catch(err => {

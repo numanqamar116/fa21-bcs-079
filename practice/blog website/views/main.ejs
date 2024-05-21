@@ -3,7 +3,7 @@
     <div id="cookie-consent" class="cookie-consent hidden">
         <p>We use cookies to improve your experience. By using our site, you accept our use of cookies.</p>
         <button id="accept-cookies">Accept Cookies</button>
-      </div>
+    </div>
     <div class="feature-this-month">
         <div class="left-feature-this-month">
             <h1 class="title-this-month"><span class="feature-word">Feature</span>&nbsp;This Month</h1>
@@ -26,7 +26,7 @@
 
 
             </div>
-            <div class="page-navigation-buttons"><button class="prev-button" type="button"><i
+            <div style="margin-top: 5vw;" class="page-navigation-buttons"><button class="prev-button" type="button"><i
                         class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Prev</button><button class="num-btn"
                     type="button">1</button>
                 <button class="num-btn" type="button">2</button>
@@ -42,7 +42,7 @@
             <div class="author_section">
                 <img class="author_section_author_image" src="./assets/author_main.jpg" alt="">
                 <div class="author-details">
-                    <h2 class="author-name">Jain Kia</h2>
+                    <h2 class="author-name">Nomi</h2>
                     <h4 class="author-designation">Fashion designer, Blogger, activist</h3>
                         <h4 class="author_address">designer at: <span class="author_web">www.gethugothemes.com</span>
                         </h4>
@@ -55,7 +55,7 @@
             <div class="author_section">
                 <img class="author_section_author_image" src="./assets/author_main.jpg" alt="">
                 <div class="author-details">
-                    <h2 class="author-name">Jain Kia</h2>
+                    <h2 class="author-name">Sherry</h2>
                     <h4 class="author-designation">Fashion designer, Blogger, activist</h3>
                         <h4 class="author_address">designer at: <span class="author_web">www.gethugothemes.com</span>
                         </h4>
@@ -68,7 +68,7 @@
             <div class="author_section">
                 <img class="author_section_author_image" src="./assets/author_main.jpg" alt="">
                 <div class="author-details">
-                    <h2 class="author-name">Jain Kia</h2>
+                    <h2 class="author-name">Harry</h2>
                     <h4 class="author-designation">Fashion designer, Blogger, activist</h3>
                         <h4 class="author_address">designer at: <span class="author_web">www.gethugothemes.com</span>
                         </h4>
@@ -129,37 +129,28 @@
             <div class="instagram-section">
                 <h1 class="title-this-month right_main"><span class="feature-word">Instagram</span>&nbsp;Posts</h1>
                 <div class="sub-instagram-section">
-                    <img class="instagram-section-image" src="./assets/insta.jpg" alt="">
-                    <img class="instagram-section-image" src="./assets/insta.jpg" alt="">
-                    <img class="instagram-section-image" src="./assets/insta.jpg" alt="">
-                    <img class="instagram-section-image" src="./assets/insta.jpg" alt="">
-                    <img class="instagram-section-image" src="./assets/insta.jpg" alt="">
-                    <img class="instagram-section-image" src="./assets/insta.jpg" alt="">
-                    <img class="instagram-section-image" src="./assets/insta.jpg" alt="">
-                    <img class="instagram-section-image" src="./assets/insta.jpg" alt="">
-                    <img class="instagram-section-image" src="./assets/insta.jpg" alt="">
-                </div>
-            </div>
-            <div class="tags-section">
-                <h1 class="title-this-month right_main" style="margin: 0vw 0vw 0vw 0.3vw;"><span
-                        class="feature-word">Search</span>&nbsp;With Tags</h1>
-                <div class="sub-tags-section">
-                    <div class="tag">Travel</div>
-                    <div class="tag">Lifestyle</div>
-                    <div class="tag">Fashion</div>
+                    <img class="instagram-section-image" src="./assets/insta.png" alt=""
+                        onclick="window.open('https://www.instagram.com', '_blank')">
+                    <img class="instagram-section-image" src="./assets/insta.png" alt=""
+                        onclick="window.open('https://www.instagram.com', '_blank')">
+                    <img class="instagram-section-image" src="./assets/insta.png" alt=""
+                        onclick="window.open('https://www.instagram.com', '_blank')">
+                    <img class="instagram-section-image" src="./assets/insta.png" alt=""
+                        onclick="window.open('https://www.instagram.com', '_blank')">
+                    <img class="instagram-section-image" src="./assets/insta.png" alt=""
+                        onclick="window.open('https://www.instagram.com', '_blank')">
+                    <img class="instagram-section-image" src="./assets/insta.png" alt=""
+                        onclick="window.open('https://www.instagram.com', '_blank')">
+                    <img class="instagram-section-image" src="./assets/insta.png" alt=""
+                        onclick="window.open('https://www.instagram.com', '_blank')">
+                    <img class="instagram-section-image" src="./assets/insta.png" alt=""
+                        onclick="window.open('https://www.instagram.com', '_blank')">
+                    <img class="instagram-section-image" src="./assets/insta.png" alt=""
+                        onclick="window.open('https://www.instagram.com', '_blank')">
 
                 </div>
-                <div class="sub-tags-section">
-                    <div class="tag">Technology</div>
-                    <div class="tag">Business</div>
-                    <div class="tag">Design</div>
-                </div>
-                <div class="sub-tags-section">
-                    <div class="tag">Health</div>
-                    <div class="tag">Food</div>
-                    <div class="tag">Art</div>
-                </div>
             </div>
+
         </div>
     </div>
 
@@ -173,17 +164,17 @@
     <script src="./jquery.js"></script>
     <script src="./main.js"></script>
     <script>document.addEventListener('DOMContentLoaded', () => {
-        const cookieConsent = document.getElementById('cookie-consent');
-        const acceptCookiesBtn = document.getElementById('accept-cookies');
-      
-        if (document.cookie.split(';').some((item) => item.trim().startsWith('showCookiePrompt='))) {
-          cookieConsent.classList.remove('hidden');
-        }
-      
-        acceptCookiesBtn.addEventListener('click', () => {
-          document.cookie = "cookieConsent=true; path=/; max-age=" + 60*60*24*365; // 1 year
-          cookieConsent.classList.add('hidden');
+            const cookieConsent = document.getElementById('cookie-consent');
+            const acceptCookiesBtn = document.getElementById('accept-cookies');
+
+            if (document.cookie.split(';').some((item) => item.trim().startsWith('showCookiePrompt='))) {
+                cookieConsent.classList.remove('hidden');
+            }
+
+            acceptCookiesBtn.addEventListener('click', () => {
+                document.cookie = "cookieConsent=true; path=/; max-age=" + 60 * 60 * 24 * 365; // 1 year
+                cookieConsent.classList.add('hidden');
+            });
         });
-      });
-      </script>
+    </script>
 </body>
