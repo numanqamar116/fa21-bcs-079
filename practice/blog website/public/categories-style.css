@@ -32,7 +32,7 @@
   top: 25%;
   left: 30%;
   transform: translate(-50%, -60%);
-  z-index: 2;
+  z-index: 1;
   font-family: 'Poppins', sans-serif;
   font-size: 6vw;
   color: white;
