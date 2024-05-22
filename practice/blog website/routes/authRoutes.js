@@ -10,28 +10,50 @@ router.get("/signup", (req, res) => {
 router.post("/signup", (req, res) => {
     const { name, email, password } = req.body;
 
+    // Check for existing user with the same email
     User.findOne({ email })
         .then(existingUser => {
             if (existingUser) {
-                res.render('signup', {title: "Sign Up", errorMessage: 'Email already exists', layout: "authLayout" });
+                res.render('signup', {
+                    title: "Sign Up",
+                    errorMessage: 'Email already exists',
+                    layout: "authLayout"
+                });
             } else {
-                const newUser = new User({ name, email, password });
-                newUser.save()
-                    .then(savedUser => {
-                        console.log('User saved successfully:', savedUser);
-                        res.redirect('/signin');
+                // Check for existing user with the same name
+                User.findOne({ name })
+                    .then(existingUserWithName => {
+                        if (existingUserWithName) {
+                            res.render('signup', {
+                                title: "Sign Up",
+                                errorMessage: 'The User with this name already exists, please try a different name',
+                                layout: "authLayout"
+                            });
+                        } else {
+                            const newUser = new User({ name, email, password });
+                            newUser.save()
+                                .then(savedUser => {
+                                    console.log('User saved successfully:', savedUser);
+                                    res.redirect('/signin');
+                                })
+                                .catch(err => {
+                                    console.error('Error saving user:', err);
+                                    res.status(500).send('Error signing up user');
+                                });
+                        }
                     })
                     .catch(err => {
-                        console.error('Error saving user:', err);
+                        console.error('Error checking for existing user name:', err);
                         res.status(500).send('Error signing up user');
                     });
             }
         })
         .catch(err => {
-            console.error('Error checking for existing user:', err);
+            console.error('Error checking for existing user email:', err);
             res.status(500).send('Error signing up user');
         });
 });
+
 
 // Signin route
 router.get("/signin", (req, res) => {

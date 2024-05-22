@@ -1,0 +1,138 @@
+<style>
+    /* Optional CSS styles for better presentation */
+    .data {
+        padding: 10px;
+        border: 1px solid #ccc;
+        margin: 10px;
+    }
+
+    .blog-post {
+        margin-bottom: 20px;
+    }
+</style>
+
+
+
+<div class="contact-container">
+    <h1 style="position: relative !important;" class="title-this-month contact"><span
+            class="feature-word">Edit</span>&nbsp;Blog</h1>
+    <div class="sub-contact-container row">
+        <div class="left-sub-contact-container col-sm">
+            <form action="./Edit Blog.html" id="form">
+                <div class="form-group">
+                    <span class="top-contact-input">
+                        <div class="input-control">
+                            <input id="ititle" type="text" class="form-control" id="exampleFormControlInput1"
+                                placeholder="Title">
+                            <div class="error"></div>
+                        </div>
+                        <div class="input-control">
+                            <input id="iemailo" type="text" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Author"
+                            value="<%= user.name.split(' ')[0].charAt(0).toUpperCase() + user.name.split(' ')[0].slice(1).toLowerCase() %>"
+                            disabled>
+                            <div class="error"></div>
+                        </div>
+                    </span>
+                    <div class="input-control">
+                        <input id="idate" type="date" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Date">
+                        <div class="error"></div>
+                    </div>
+                    <div class="input-control">
+                        <input id="iduration" type="number" class="form-control" placeholder="Duration (in minutes)">
+                        <div class="error"></div>
+                    </div>
+                    <div class="input-control">
+                        <textarea id="iauthor_intro" class="form-control" placeholder="Author Introduction" id="exampleFormControlTextarea1" rows="4"></textarea>
+                        <div class="error"></div>
+                    </div>
+                    <div class="input-control">
+                        <input id="iimage" type="text" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Image URL">
+                        <div class="error"></div>
+                    </div>
+                    <div style="display: flex;">
+                        <h5 style="font-weight: 400; color: #686565;padding-top: 0.3vw;">Type:&nbsp;&nbsp;&nbsp;&nbsp;
+                        </h5>
+                        <div class="input-control">
+                            <div class="input-group">
+                                <select id="itype" class="form-select" aria-label="Select post type">
+                                    <option selected disabled>Select post type </option>
+                                    <option value="this-month">This Month</option>
+                                    <option value="regular">Regular</option>
+                                    <option value="popular">Popular</option>
+                                </select>
+                            </div>
+                            <div class="error"></div>
+                        </div>
+                        <div style="display: flex;">
+                            <h5 style="font-weight: 400; color: #686565;padding-top: 0.3vw;">
+                                &nbsp;&nbsp;&nbsp;&nbsp;Category:&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                            <div class="input-control">
+                                <div class="input-group">
+                                    <select id="icategory" class="form-select" aria-label="Select post category">
+                                        <option selected disabled>Select post category</option>
+                                        <option value="Travel">Travel</option>
+                                        <option value="Food and Cooking">Food and Cooking</option>
+                                        <option value="Fashion and Beauty">Fashion and Beauty</option>
+                                        <option value="Lifestyle">Lifestyle</option>
+                                        <option value="Fitness and Health">Fitness and Health</option>
+                                        <option value="Technology">Technology</option>
+                                        <option value="Finance and Investing">Finance and Investing</option>
+                                        <option value="Parenting">Parenting</option>
+                                        <!-- Add more categories as needed -->
+                                    </select>
+                                </div>
+                                <div class="error"></div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="input-control">
+                        <textarea id="imessage" class="form-control" placeholder="Start writing blog ..."
+                            id="exampleFormControlTextarea1" rows="8"></textarea>
+                        <div class="error"></div>
+                    </div>
+                    <button type="submit" class="btn btn-secondary">Publish</button>
+                </div>
+            </form>
+        </div>
+        <div class="right-sub-contact-container col-sm">
+            <p style="width: 30vw; text-align: justify; color: rgb(86, 85, 85);">
+                Dynamically underwhelm integrated outsourcing
+                via timely models. Rapidiously reconceptualize visionary imperatives without
+            </p>
+            <p style="width: 30vw; text-align: justify;color: rgb(86, 85, 85);">
+                blog.notebook@gmail.com <br>
+                +886554 654654 <br>
+                9567 Turner Trace Apt. BC C3G8A4
+
+
+            </p>
+            <div class="title-footer follow" style="margin-top: 1vw !important;margin-bottom: 1vw !important;"><a
+                    href="">Follow On:</a></div>
+            <div class="author-social-media-icons-section"><span class="author-social-media-icon"><i
+                        class="fa-brands fa-facebook"></i></span><span class="author-social-media-icon"><i
+                        class="fa-brands fa-twitter"></i></span><span class="author-social-media-icon"><i
+                        class="fa-brands fa-instagram"></i></i></span></div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="sub-main-blogs-section editblog">
+
+</div>
+<div class="page-navigation-buttons"><button class="prev-button" type="button"><i
+    class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Prev</button><button class="num-btn"
+type="button">1</button>
+<button class="num-btn" type="button">2</button>
+<button class="num-btn" type="button">3</button>
+<button class="next-button" type="button">Next &nbsp;&nbsp;&nbsp;<i
+    class="fa-solid fa-arrow-right"></i></button>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="./jquery.js"></script>

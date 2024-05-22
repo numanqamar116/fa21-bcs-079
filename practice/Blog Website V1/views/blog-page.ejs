@@ -1,0 +1,47 @@
+<div>
+    <div class="title-container">
+        <h1 class="blog-title"><%= blog.title %></h1>
+    </div>
+    <div style="width: 100%;" class="author-section">
+        <div class="bp-author-details" style="display: flex; margin-top: 2vw;margin-bottom: 2vw;">
+            <img class="bp-author-image" src="/assets/author.jpg" alt="">
+            <div class="bp-author-details-section">
+                <p style="line-height: 0; padding-top: 0.5vw; font-size: 2vw;margin-bottom: 2vw;margin-top: 1.5vw;"><%= blog.author.name %></p>
+                <span>
+                    <p style="line-height: 0; padding: 0;font-size: 1.2vw; "><%= blog.duration %> min read . <%= blog.date %></p>
+                </span>
+            </div>
+        </div>
+        <div style="display: flex;align-items: center;justify-content: center;" class="bp-blog-content">
+            <p style="position: relative;" class="bp-author-section">
+                <%= blog.author_intro %>
+            </p>
+            <img style="position: relative;" class="bp-blog-image" src="<%= blog.image %>" alt="">
+            <p style="position: relative;">
+                <%= blog.textBody %>
+            </p>
+        </div>
+        <img id="ad1" class="sticky-ad" src="/assets/vban1.jpg" alt="">
+<img id="ad2" style="right: 0;" class="sticky-ad" src="/assets/vban2.jpg" alt="">
+</div>
+    </div>
+</div>
+<script>
+window.addEventListener('scroll', function () {
+var ad1 = document.getElementById('ad1');
+var ad2 = document.getElementById('ad2'); // Add ad2 element
+var footer = document.querySelector('footer');
+var scrollPosition = window.scrollY;
+var triggerPoint = footer.offsetTop - window.innerHeight; // Position where ad1 and ad2 stop scrolling
+
+if (scrollPosition < triggerPoint) {
+    ad1.style.top = '10vw';
+    ad2.style.top = '10vw'; // Ensure ad2 stays at the top
+} else {
+    var distanceToFooter = triggerPoint - scrollPosition;
+    ad1.style.top = distanceToFooter + 'px';
+    ad2.style.top = distanceToFooter + 'px'; // Move ad2 down along with ad1
+}
+});
+
+</script>
