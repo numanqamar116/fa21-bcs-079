@@ -28,8 +28,9 @@ margin-left: 19vw;
     align-items: center;
 }
 .bp-blog-image{
-    width: 60vw;
-    margin-bottom: 4vw;
+    width: 60vw !important;
+    margin-bottom: 4vw !important;
+    margin-left: 0px !important;
 }
 .bp-blog-content{
     display: flex;

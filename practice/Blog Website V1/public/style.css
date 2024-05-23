@@ -802,3 +802,11 @@ text-align: center !important;
     position: relative;
     z-index: 2;
 }
+.data {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 10px;
+}
+.blog-post {
+    margin-bottom: 20px;
+}

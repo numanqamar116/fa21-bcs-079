@@ -1,5 +1,4 @@
 <style>
-    /* Optional CSS styles for better presentation */
     .data {
         padding: 10px;
         border: 1px solid #ccc;
@@ -9,34 +8,32 @@
     .blog-post {
         margin-bottom: 20px;
     }
+
+    .error {
+        color: red;
+    }
 </style>
 
-
-
 <div class="contact-container">
-    <h1 style="position: relative !important;" class="title-this-month contact"><span
-            class="feature-word">Edit</span>&nbsp;Blog</h1>
+    <h1 style="position: relative !important;" class="title-this-month contact">
+        <span class="feature-word">Edit</span>&nbsp;Blog
+    </h1>
     <div class="sub-contact-container row">
         <div class="left-sub-contact-container col-sm">
             <form action="./Edit Blog.html" id="form">
                 <div class="form-group">
                     <span class="top-contact-input">
                         <div class="input-control">
-                            <input id="ititle" type="text" class="form-control" id="exampleFormControlInput1"
-                                placeholder="Title">
+                            <input id="ititle" type="text" class="form-control" placeholder="Title">
                             <div class="error"></div>
                         </div>
                         <div class="input-control">
-                            <input id="iemailo" type="text" class="form-control" id="exampleFormControlInput1"
-                            placeholder="Author"
-                            value="<%= user.name.split(' ')[0].charAt(0).toUpperCase() + user.name.split(' ')[0].slice(1).toLowerCase() %>"
-                            disabled>
+                            <input id="iemailo" type="text" class="form-control" placeholder="Author" value="<%= user.name.split(' ')[0].charAt(0).toUpperCase() + user.name.split(' ')[0].slice(1).toLowerCase() %>" disabled>
                             <div class="error"></div>
                         </div>
                     </span>
                     <div class="input-control">
-                        <input id="idate" type="date" class="form-control" id="exampleFormControlInput1"
-                            placeholder="Date">
+                        <input id="idate" type="date" class="form-control" placeholder="Date">
                         <div class="error"></div>
                     </div>
                     <div class="input-control">
@@ -44,17 +41,15 @@
                         <div class="error"></div>
                     </div>
                     <div class="input-control">
-                        <textarea id="iauthor_intro" class="form-control" placeholder="Author Introduction" id="exampleFormControlTextarea1" rows="4"></textarea>
+                        <textarea id="iauthor_intro" class="form-control" placeholder="Author Introduction" rows="4"></textarea>
                         <div class="error"></div>
                     </div>
                     <div class="input-control">
-                        <input id="iimage" type="text" class="form-control" id="exampleFormControlInput1"
-                            placeholder="Image URL">
+                        <input id="iimage" type="text" class="form-control" placeholder="Image URL">
                         <div class="error"></div>
                     </div>
                     <div style="display: flex;">
-                        <h5 style="font-weight: 400; color: #686565;padding-top: 0.3vw;">Type:&nbsp;&nbsp;&nbsp;&nbsp;
-                        </h5>
+                        <h5 style="font-weight: 400; color: #686565;padding-top: 0.3vw;">Type:&nbsp;&nbsp;&nbsp;&nbsp;</h5>
                         <div class="input-control">
                             <div class="input-group">
                                 <select id="itype" class="form-select" aria-label="Select post type">
@@ -68,7 +63,8 @@
                         </div>
                         <div style="display: flex;">
                             <h5 style="font-weight: 400; color: #686565;padding-top: 0.3vw;">
-                                &nbsp;&nbsp;&nbsp;&nbsp;Category:&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                &nbsp;&nbsp;&nbsp;&nbsp;Category:&nbsp;&nbsp;&nbsp;&nbsp;
+                            </h5>
                             <div class="input-control">
                                 <div class="input-group">
                                     <select id="icategory" class="form-select" aria-label="Select post category">
@@ -81,18 +77,14 @@
                                         <option value="Technology">Technology</option>
                                         <option value="Finance and Investing">Finance and Investing</option>
                                         <option value="Parenting">Parenting</option>
-                                        <!-- Add more categories as needed -->
                                     </select>
                                 </div>
                                 <div class="error"></div>
                             </div>
                         </div>
-
-
                     </div>
                     <div class="input-control">
-                        <textarea id="imessage" class="form-control" placeholder="Start writing blog ..."
-                            id="exampleFormControlTextarea1" rows="8"></textarea>
+                        <textarea id="imessage" class="form-control" placeholder="Start writing blog ..." rows="8"></textarea>
                         <div class="error"></div>
                     </div>
                     <button type="submit" class="btn btn-secondary">Publish</button>
@@ -101,38 +93,385 @@
         </div>
         <div class="right-sub-contact-container col-sm">
             <p style="width: 30vw; text-align: justify; color: rgb(86, 85, 85);">
-                Dynamically underwhelm integrated outsourcing
-                via timely models. Rapidiously reconceptualize visionary imperatives without
+                Dynamically underwhelm integrated outsourcing via timely models. Rapidiously reconceptualize visionary imperatives without
             </p>
             <p style="width: 30vw; text-align: justify;color: rgb(86, 85, 85);">
                 blog.notebook@gmail.com <br>
                 +886554 654654 <br>
                 9567 Turner Trace Apt. BC C3G8A4
-
-
             </p>
-            <div class="title-footer follow" style="margin-top: 1vw !important;margin-bottom: 1vw !important;"><a
-                    href="">Follow On:</a></div>
-            <div class="author-social-media-icons-section"><span class="author-social-media-icon"><i
-                        class="fa-brands fa-facebook"></i></span><span class="author-social-media-icon"><i
-                        class="fa-brands fa-twitter"></i></span><span class="author-social-media-icon"><i
-                        class="fa-brands fa-instagram"></i></i></span></div>
+            <div class="title-footer follow" style="margin-top: 1vw !important;margin-bottom: 1vw !important;">
+                <a href="">Follow On:</a>
+            </div>
+            <div class="author-social-media-icons-section">
+                <span class="author-social-media-icon"><i class="fa-brands fa-facebook"></i></span>
+                <span class="author-social-media-icon"><i class="fa-brands fa-twitter"></i></span>
+                <span class="author-social-media-icon"><i class="fa-brands fa-instagram"></i></span>
+            </div>
         </div>
     </div>
 </div>
+<div class="sub-main-blogs-section editblog"></div>
+<div class="page-navigation-buttons">
+    <button class="prev-button" type="button"><i class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Prev</button>
+    <button class="num-btn" type="button">1</button>
+    <button class="num-btn" type="button">2</button>
+    <button class="num-btn" type="button">3</button>
+    <button class="next-button" type="button">Next &nbsp;&nbsp;&nbsp;<i class="fa-solid fa-arrow-right"></i></button>
 </div>
-<div class="sub-main-blogs-section editblog">
-
-</div>
-<div class="page-navigation-buttons"><button class="prev-button" type="button"><i
-    class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Prev</button><button class="num-btn"
-type="button">1</button>
-<button class="num-btn" type="button">2</button>
-<button class="num-btn" type="button">3</button>
-<button class="next-button" type="button">Next &nbsp;&nbsp;&nbsp;<i
-    class="fa-solid fa-arrow-right"></i></button>
-</div>
-
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="./jquery.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+<script>
+    $(document).ready(function () {
+        let imessageEditor;
+
+        // Initialize CKEditor
+        ClassicEditor
+            .create(document.querySelector('#imessage'), {
+                toolbar: {
+                    items: [
+                        'heading',
+                        '|',
+                        'bold',
+                        'italic',
+                        '|',
+                        'link',
+                        'bulletedList',
+                        'numberedList',
+                        '|',
+                        'undo',
+                        'redo'
+                    ]
+                }
+            })
+            .then(editor => {
+                console.log('Blog Content Editor initialized', editor);
+                imessageEditor = editor;
+            })
+            .catch(error => {
+                console.error('There was a problem initializing the blog content editor.', error);
+            });
+
+        // Form submission handling
+        $('#form').on('submit', function (event) {
+            event.preventDefault();
+
+            // Perform validation checks
+            let isValid = true;
+
+            // Check if each field is filled, if not, display error message
+            if ($('#ititle').val().trim() === '') {
+                $('#ititle').next('.error').text('Title is required');
+                isValid = false;
+            } else {
+                $('#ititle').next('.error').text('');
+            }
+
+            if ($('#idate').val().trim() === '') {
+                $('#idate').next('.error').text('Date is required');
+                isValid = false;
+            } else {
+                $('#idate').next('.error').text('');
+            }
+
+            if ($('#iduration').val().trim() === '') {
+                $('#iduration').next('.error').text('Duration is required');
+                isValid = false;
+            } else {
+                $('#iduration').next('.error').text('');
+            }
+
+            if ($('#iauthor_intro').val().trim() === '') {
+                $('#iauthor_intro').next('.error').text('Author introduction is required');
+                isValid = false;
+            } else {
+                $('#iauthor_intro').next('.error').text('');
+            }
+
+            if ($('#iimage').val().trim() === '') {
+                $('#iimage').next('.error').text('Image URL is required');
+                isValid = false;
+            } else {
+                $('#iimage').next('.error').text('');
+            }
+
+            if ($('#itype').val() === null) {
+                $('#itype').next('.error').text('Post type is required');
+                isValid = false;
+            } else {
+                $('#itype').next('.error').text('');
+            }
+
+            if ($('#icategory').val() === null) {
+                $('#icategory').next('.error').text('Post category is required');
+                isValid = false;
+            } else {
+                $('#icategory').next('.error').text('');
+            }
+
+            if (imessageEditor.getData().trim() === '') {
+                $('#imessage').next('.error').text('Blog content is required');
+                isValid = false;
+            } else {
+                $('#imessage').next('.error').text('');
+            }
+
+            // If form is not valid, prevent submission
+            if (!isValid) {
+                return;
+            }
+
+            var postId = $('#form').data('postId');
+            if (postId) {
+                updateBlogPost(postId);
+            } else {
+                createBlogPost();
+            }
+        });
+
+        var totalBlogs = 0;
+        var limitPerPage = 6; // Number of blogs per page
+
+        $.ajax({
+            url: '/authorsBlogs',
+            type: 'GET',
+            success: function (data) {
+                totalBlogs = data.length;
+                console.log('Total blogs:', totalBlogs);
+            }
+        });
+
+        var urlParams = new URLSearchParams(window.location.search);
+        console.log('URL Query String:', window.location.search); // Log the entire query string
+        var page = urlParams.get('page'); // Define the page variable
+        console.log('Page Number:', page); // Log the page parameter
+
+        // Fetch blog data for the specified page
+        fetchBlogData(page);
+
+        function fetchBlogData(page) {
+            var pageNumber = page || 1; // Default to page 1 if no page number is provided
+            var skip = (pageNumber - 1) * limitPerPage; // Calculate skip value for pagination
+            var url = '/authorsBlogs?page=' + pageNumber + '&limit=' + limitPerPage;
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function (data) {
+                    $('.sub-main-blogs-section').empty();
+                    data.forEach(function (post) {
+                        var truncatedText = post.textBody.split(' ').slice(0, 30).join(' ');
+                        if (post.textBody.split(' ').length > 30) {
+                            truncatedText += '...';
+                        }
+                        var postElement = `
+                            <div class="single-recently-blog">
+                                <img class="recently-blog-image" data-id="${post._id}" src="${post.image}" alt="">
+                                <div class="feature-this-month-blog-details recently">
+                                    <span class="this-month-blog-category recently">${post.category}</span>
+                                    <h1 class="this_month-blog-title recently" data-id="${post._id}">${post.title}</h1>
+                                    <div class="blog-sub-details recently">
+                                        <span class="blog-sub-details-section">
+                                            <img class="author_image" src="./assets/author.jpg" alt=""> ${post.author.name}&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                                        </span>
+                                        <span class="blog-sub-details recently">
+                                            <span class="blog-sub-details-section">
+                                                <i class="fa-regular fa-calendar"></i>&nbsp;&nbsp;${post.date}&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                                            </span>
+                                            <span class="blog-sub-details recently">
+                                                <span class="blog-sub-details-section">
+                                                    <i class="fa-regular fa-clock"></i>&nbsp;&nbsp;${post.duration} min. to read
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="this-month-blog-description recently">
+                                        ${truncatedText}
+                                    </div>
+                                    <div class="blog-buttons">
+                                        <button class="delete-btn btn btn-secondary" data-id="${post._id}">Delete</button>
+                                        <button class="update-btn btn btn-secondary" data-id="${post._id}">Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        $('.sub-main-blogs-section').append(postElement);
+                    });
+                    generateNavigationButtons(pageNumber);
+
+                    $('.delete-btn').on('click', function () {
+                        var postId = $(this).data('id');
+                        deleteBlogPost(postId);
+                    });
+
+                    $('.update-btn').on('click', function () {
+                        var postId = $(this).data('id');
+                        populateFormFields(postId);
+                        // Scroll to the top of the page
+                        $('html, body').animate({ scrollTop: 0 }, 'slow');
+                    });
+
+                    // Update URL to include the page number
+                    if (window.location.pathname === '/editBlog') {
+                        var newUrl = window.location.pathname + '?page=' + pageNumber;
+                        window.history.pushState({ path: newUrl }, '', newUrl);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error fetching blog data:', error);
+                }
+            });
+        }
+
+        $(document).on('click', '.recently-blog-image,.this_month-blog-title', function () {
+            const postId = $(this).data('id');
+            window.location.href = `http://localhost:7878/blog-page/${postId}`;
+        });
+
+        function deleteBlogPost(postId) {
+            $.ajax({
+                url: '/blogs/' + postId,
+                type: 'DELETE',
+                success: function (response) {
+                    fetchBlogData(page);
+
+                    alert('Blog Post deleted successfully')
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error deleting blog post:', error);
+                }
+            });
+        }
+
+        function createBlogPost() {
+            var postData = {
+                title: $('#ititle').val(),
+                author: {
+                    name: $('#iemailo').val().toLowerCase()
+                },
+                date: $('#idate').val(),
+                image: $('#iimage').val(),
+                textBody: imessageEditor.getData(), // Get the CKEditor content
+                duration: $('#iduration').val(), // Include the duration
+                author_intro: $('#iauthor_intro').val(), // Include the author introduction
+                type: $('#itype').val(),
+                category: $('#icategory').val()
+            };
+
+            $.ajax({
+                url: '/blogs',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(postData),
+                success: function (response) {
+                    $('#form')[0].reset();
+                    
+                    fetchBlogData(page);
+                    alert('Blog Post created successfully')
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error publishing blog post:', error);
+                }
+            });
+        }
+
+        function updateBlogPost(postId) {
+            var updateData = {
+                title: $('#ititle').val(),
+                date: $('#idate').val(),
+                image: $('#iimage').val(),
+                textBody: imessageEditor.getData(), // Get the CKEditor content
+                duration: $('#iduration').val(), // Include the duration
+                author_intro: $('#iauthor_intro').val(), // Include the author introduction
+                type: $('#itype').val(),
+                category: $('#icategory').val()
+            };
+
+            $.ajax({
+                url: '/blogs/' + postId,
+                type: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify(updateData),
+                success: function (response) {
+                    $('#form')[0].reset();
+                    $('#form').removeData('postId');
+                    fetchBlogData(page);
+                    alert('Updated Successfully')
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error updating blog post:', error);
+                }
+            });
+        }
+
+        function generateNavigationButtons(currentPage) {
+            var totalPages = Math.ceil(totalBlogs / limitPerPage);
+            var $pageNavigation = $('.page-navigation-buttons');
+            $pageNavigation.empty();
+
+            if (totalPages > 1) {
+                // Previous button
+                var $prevButton = $('<div style="margin-top: 2vw"><button class="prev-button" type="button"><i class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Prev</button></div>');
+                $prevButton.on('click', function () {
+                    if (currentPage > 1) {
+                        fetchBlogData(currentPage - 1);
+                        scrollToTop();
+                    }
+                });
+                $pageNavigation.append($prevButton);
+
+                // Number buttons
+                for (var i = 1; i <= totalPages; i++) {
+                    var $numButton = $('<button style="margin-top: 2vw" class="num-btn" type="button">' + i + '</button>');
+                    $numButton.on('click', { pageNumber: i }, function (event) {
+                        fetchBlogData(event.data.pageNumber);
+                        scrollToTop();
+                    });
+                    $pageNavigation.append($numButton);
+                }
+
+                // Next button
+                var $nextButton = $('<button style="margin-top: 2vw" class="next-button" type="button">Next &nbsp;&nbsp;&nbsp;<i class="fa-solid fa-arrow-right"></i></button>');
+                $nextButton.on('click', function () {
+                    if (currentPage < totalPages) {
+                        fetchBlogData(currentPage + 1);
+                        scrollToTop();
+                    }
+                });
+                $pageNavigation.append($nextButton);
+            }
+        }
+
+        function scrollToTop() {
+            $('html, body').animate({ scrollTop: 0 }, 'slow');
+        }
+
+        function populateFormFields(postId) {
+            $.ajax({
+                url: '/blogs/' + postId,
+                type: 'GET',
+                success: function (post) {
+                    $('#ititle').val(post.title);
+                    $('#iemail').val(post.author.name);
+                    $('#idate').val(post.date);
+                    $('#iimage').val(post.image);
+                    imessageEditor.setData(post.textBody); // Set the CKEditor content
+                    $('#iduration').val(post.duration); // Populate the duration
+                    $('#iauthor_intro').val(post.author_intro); // Populate the author introduction
+                    $('#itype').val(post.type);
+                    $('#icategory').val(post.category);
+                    $('#form').data('postId', postId);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error fetching blog post details:', error);
+                }
+            });
+        }
+
+        fetchBlogData(page);
+    });
+</script>
