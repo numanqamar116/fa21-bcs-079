@@ -40,7 +40,9 @@ a:hover{
 .recently-blog-image {
     transition: all 0.3s ease-in-out;
 }
-
+.recently-blog-image:hover {
+    cursor: pointer;
+}
 .hovered-image {
     transform: scale(1.1); /* Enlarge the image */
     opacity: 0.8; /* Slightly fade the image */
