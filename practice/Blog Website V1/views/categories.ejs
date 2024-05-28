@@ -30,6 +30,32 @@
         background-color: #9E9E9E;
         cursor: not-allowed;
     }
+
+    /* Search History Dropdown Styles */
+    .search-history-dropdown {
+        position: absolute;
+        background-color: white;
+        border: 1px solid #ccc;
+        width: 50%;
+        max-height: 200px;
+        overflow-y: auto;
+        z-index: 1000;
+        display: none;
+        margin-left:  20.6vw;
+    }
+
+    .search-history-dropdown a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: #333;
+       
+    }
+
+    .search-history-dropdown a:hover {
+        background-color: #f0f0f0;
+    }
+
 </style>
 <div class="image-container">
     <img class="blog-cover-image" src="/assets/blog-cover.jpg" alt="">
@@ -38,12 +64,20 @@
     <p class="typewriter-text" id="typewriter"></p>
     <button onclick="window.location.href='/contact-us'" class="button-68" role="button">Contact Us</button>
 </div>
-<div class="search-container" style="text-align: center; margin: 20px 0;">
+<div class="search-container" style="text-align: center; margin: 20px 0; position: relative;">
     <form id="search-form" action="/categories/<%= category %>" method="GET">
-        <input type="text" id="search-input" name="search" placeholder="Search blogs..." value="<%= searchQuery %>" style="padding: 10px; width: 50%; font-size: 1.2em;">
+        <input type="text" id="search-input" name="search" placeholder="Search blogs..." value="<%= searchQuery %>" style="padding: 10px; width: 50%; font-size: 1.2em;" autocomplete="off">
         <button type="submit" id="search-button" style="padding: 10px 20px; font-size: 1.2em; background-color: rgb(18, 151, 107); color: white; border: none; cursor: pointer;">Search</button>
     </form>
+    <% if (user) { %> <!-- Assuming `user` is a variable that indicates if a user is logged in -->
+        <div id="search-history-dropdown" class="search-history-dropdown">
+            <% searchHistory.forEach(function(query) { %>
+                <a href="#" class="search-history-item"><%= query %></a>
+            <% }); %>
+        </div>
+    <% } %>
 </div>
+
 <div>
     <h1 style="text-align: center; font-size: 3vw; margin-top: 2vw; margin-bottom: 2vw; text-decoration: underline; font-weight: bold; color: rgb(18, 151, 107);" class="title-page-category"><%= category %></h1>
 </div>
@@ -56,7 +90,7 @@
                 <h1 class="this_month-blog-title recently" data-id="<%= blog._id %>"><%= blog.title %></h1>
                 <div class="blog-sub-details recently">
                     <span class="blog-sub-details-section">
-                        <img class="author_image" src="./assets/author.png" alt=""> <%= blog.author.name %>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                        <img class="author_image" src="/assets/author.png" alt=""> <%= blog.author.name %>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
                     </span>
                     <span class="blog-sub-details recently">
                         <span class="blog-sub-details-section">
@@ -70,7 +104,7 @@
                     </span>
                 </div>
                 <div class="this-month-blog-description recently">
-                    <%= blog.textBody.split(' ').slice(0, 30).join(' ') %>...
+                    <%- blog.textBody.split(' ').slice(0, 30).join(' ') %>...
                 </div>
             </div>
         </div>
@@ -87,7 +121,6 @@
         <a href="/categories/<%= category %>?page=<%= currentPage + 1 %>&search=<%= searchQuery %>" class="pagination-button">Next</a>
     <% } %>
 </div>
-
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="./category.js"></script>
@@ -132,11 +165,18 @@
 
     type();
 
-    $('#search-button').on('click', function() {
-        const searchQuery = $('#search-input').val();
-        const category = '<%= category %>';
-        const currentPage = '<%= currentPage %>';
-        window.location.href = `/categories/${category}?search=${searchQuery}&page=${currentPage}`;
+    $('#search-input').on('focus', function() {
+        $('#search-history-dropdown').show();
+    });
+
+    $('#search-input').on('blur', function() {
+        setTimeout(() => { $('#search-history-dropdown').hide(); }, 200);
+    });
+
+    $('.search-history-item').on('click', function() {
+        const searchQuery = $(this).text();
+        $('#search-input').val(searchQuery);
+        $('#search-form').submit();
     });
 
     // Handle click events on blog images and titles
@@ -145,5 +185,4 @@
         window.location.href = `/blog-page/${postId}`;
     });
 });
-
 </script>

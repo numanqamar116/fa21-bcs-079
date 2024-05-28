@@ -98,32 +98,30 @@ router.get('/authorsBlogs', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
-router.get('/regularBlogs', async (req, res) => {
-    const skip = parseInt(req.query.skip) || 0;
-    const limit = parseInt(req.query.limit) || 6;
-
-    try {
-        const blogs = await Blog.find({ type: 'regular' }).skip(skip).limit(limit).exec();
-        const count = await Blog.countDocuments({ type: 'regular' }).exec();
-        res.send({ posts: blogs, totalCount: count });
-    } catch (err) {
-        res.status(500).send(err);
-    }
-});
-
-// Unified categories route handler
+// Example route to check if user is logged in
 router.get('/categories/:category?', async (req, res) => {
+    
+
     const page = parseInt(req.query.page) || 1;
-    const limit = 3; // Number of blogs per page
+    const limit = 3;
     const searchQuery = req.query.search || '';
     const category = req.params.category || 'All';
 
     try {
+        if (!req.session.searchHistory) {
+            req.session.searchHistory = [];
+        }
+
+        if (searchQuery) {
+            req.session.searchHistory.push(searchQuery);
+            req.session.searchHistory = [...new Set(req.session.searchHistory)].slice(-5);
+        }
+
         const query = {
             title: { $regex: searchQuery, $options: 'i' },
             category: category === 'All' ? { $regex: '' } : { $regex: category, $options: 'i' }
         };
-        const count = await Blog.countDocuments(query); // Get the total number of blogs matching the query
+        const count = await Blog.countDocuments(query);
         const totalPages = Math.ceil(count / limit);
 
         const blogs = await Blog.find(query)
@@ -136,12 +134,16 @@ router.get('/categories/:category?', async (req, res) => {
             totalPages: totalPages,
             category: category,
             searchQuery: searchQuery,
-            title:"Edit Page"
+            searchHistory: req.session.searchHistory,
+            title: "Edit Page",
+            user: req.session.user // Pass user to the template
         });
     } catch (err) {
         console.error(err);
         res.status(500).send('Server Error');
     }
+
 });
+
 
 module.exports = router;
