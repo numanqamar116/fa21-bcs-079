@@ -98,7 +98,19 @@ router.get('/authorsBlogs', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
-// Example route to check if user is logged in
+router.get('/regularBlogs', async (req, res) => {
+    const skip = parseInt(req.query.skip) || 0;
+    const limit = parseInt(req.query.limit) || 6;
+
+    try {
+        const blogs = await Blog.find({ type: 'regular' }).skip(skip).limit(limit).exec();
+        const count = await Blog.countDocuments({ type: 'regular' }).exec();
+        res.send({ posts: blogs, totalCount: count });
+    } catch (err) {
+        res.status(500).send(err);
+    }
+});
+
 router.get('/categories/:category?', async (req, res) => {
     
 
@@ -112,7 +124,7 @@ router.get('/categories/:category?', async (req, res) => {
             req.session.searchHistory = [];
         }
 
-        if (searchQuery) {
+        if (searchQuery && req.session.user) {
             req.session.searchHistory.push(searchQuery);
             req.session.searchHistory = [...new Set(req.session.searchHistory)].slice(-5);
         }
