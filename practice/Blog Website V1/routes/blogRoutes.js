@@ -111,4 +111,37 @@ router.get('/regularBlogs', async (req, res) => {
     }
 });
 
+// Unified categories route handler
+router.get('/categories/:category?', async (req, res) => {
+    const page = parseInt(req.query.page) || 1;
+    const limit = 3; // Number of blogs per page
+    const searchQuery = req.query.search || '';
+    const category = req.params.category || 'All';
+
+    try {
+        const query = {
+            title: { $regex: searchQuery, $options: 'i' },
+            category: category === 'All' ? { $regex: '' } : { $regex: category, $options: 'i' }
+        };
+        const count = await Blog.countDocuments(query); // Get the total number of blogs matching the query
+        const totalPages = Math.ceil(count / limit);
+
+        const blogs = await Blog.find(query)
+            .skip((page - 1) * limit)
+            .limit(limit);
+
+        res.render('categories', {
+            blogs: blogs,
+            currentPage: page,
+            totalPages: totalPages,
+            category: category,
+            searchQuery: searchQuery,
+            title:"Edit Page"
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
+});
+
 module.exports = router;

@@ -1,28 +1,98 @@
+<style>
+    /* Pagination Styles */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+    }
+
+    .pagination-button {
+        padding: 10px 20px;
+        margin: 0 5px;
+        background-color: #08a873;
+        color: white !important;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .pagination-button:hover {
+        background-color: #107855;
+    }
+
+    .pagination-button.active {
+        background-color: #0D5E42;
+    }
+
+    .pagination-button:disabled {
+        background-color: #9E9E9E;
+        cursor: not-allowed;
+    }
+</style>
 <div class="image-container">
     <img class="blog-cover-image" src="/assets/blog-cover.jpg" alt="">
     <div class="overlay"></div>
-    <p  data-aos="fade-up"
-    data-aos-duration="3000" class="intro-text">Our Blogs Are </p>
+    <p data-aos="fade-up" data-aos-duration="3000" class="intro-text">Our Blogs Are </p>
     <p class="typewriter-text" id="typewriter"></p>
-   <!-- HTML !-->
-<button onclick="window.location.href='/contact-us'" class="button-68" role="button">Contact Us</button>
+    <button onclick="window.location.href='/contact-us'" class="button-68" role="button">Contact Us</button>
 </div>
 <div class="search-container" style="text-align: center; margin: 20px 0;">
-    <input type="text" id="search-input" placeholder="Search blogs..." style="padding: 10px; width: 50%; font-size: 1.2em;">
-    <button id="search-button" style="padding: 10px 20px; font-size: 1.2em; background-color: rgb(18, 151, 107); color: white; border: none; cursor: pointer;">Search</button>
+    <form id="search-form" action="/categories/<%= category %>" method="GET">
+        <input type="text" id="search-input" name="search" placeholder="Search blogs..." value="<%= searchQuery %>" style="padding: 10px; width: 50%; font-size: 1.2em;">
+        <button type="submit" id="search-button" style="padding: 10px 20px; font-size: 1.2em; background-color: rgb(18, 151, 107); color: white; border: none; cursor: pointer;">Search</button>
+    </form>
 </div>
-
 <div>
-    <h1 style="text-align: center;font-size: 3vw;margin-top: 2vw;margin-bottom: 2vw;text-decoration: underline;font-weight: bold;color: rgb(18, 151, 107);" class="title-page-category"><%= category %></h1>
+    <h1 style="text-align: center; font-size: 3vw; margin-top: 2vw; margin-bottom: 2vw; text-decoration: underline; font-weight: bold; color: rgb(18, 151, 107);" class="title-page-category"><%= category %></h1>
 </div>
 <div class="sub-main-blogs-section editblog">
-     
+    <% blogs.forEach(function(blog) { %>
+        <div class="single-recently-blog">
+            <img style="cursor:pointer" class="recently-blog-image" data-id="<%= blog._id %>" src="<%= blog.image %>" alt="">
+            <div class="feature-this-month-blog-details recently">
+                <span class="this-month-blog-category recently"><%= blog.category %></span>
+                <h1 class="this_month-blog-title recently" data-id="<%= blog._id %>"><%= blog.title %></h1>
+                <div class="blog-sub-details recently">
+                    <span class="blog-sub-details-section">
+                        <img class="author_image" src="./assets/author.png" alt=""> <%= blog.author.name %>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                    </span>
+                    <span class="blog-sub-details recently">
+                        <span class="blog-sub-details-section">
+                            <i class="fa-regular fa-calendar"></i>&nbsp;&nbsp;<%= blog.date %>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                        </span>
+                        <span class="blog-sub-details recently">
+                            <span class="blog-sub-details-section">
+                                <i class="fa-regular fa-clock"></i>&nbsp;&nbsp;<%= blog.duration %> min. to read
+                            </span>
+                        </span>
+                    </span>
+                </div>
+                <div class="this-month-blog-description recently">
+                    <%= blog.textBody.split(' ').slice(0, 30).join(' ') %>...
+                </div>
+            </div>
+        </div>
+    <% }); %>
+</div>
+<div class="pagination">
+    <% if (currentPage > 1) { %>
+        <a href="/categories/<%= category %>?page=<%= currentPage - 1 %>&search=<%= searchQuery %>" class="pagination-button">Previous</a>
+    <% } %>
+    <% for (let i = 1; i <= totalPages; i++) { %>
+        <a href="/categories/<%= category %>?page=<%= i %>&search=<%= searchQuery %>" class="pagination-button <%= currentPage === i ? 'active' : '' %>"><%= i %></a>
+    <% } %>
+    <% if (currentPage < totalPages) { %>
+        <a href="/categories/<%= category %>?page=<%= currentPage + 1 %>&search=<%= searchQuery %>" class="pagination-button">Next</a>
+    <% } %>
 </div>
 
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="./category.js"></script>
-
 <script>
-$(document).ready(function() {
+   $(document).ready(function() {
     const texts = ["Unique", "Informative", "Engaging", "Inspiring"];
     let count = 0;
     let index = 0;
@@ -62,188 +132,18 @@ $(document).ready(function() {
 
     type();
 
-    var category = "<%= category %>";
-    console.log(category);
-
-    function fetchCategoryData(category) {
-        $.ajax({
-            url: '/blogs', // Assuming this route is defined in your Express app
-            type: 'GET',
-            success: function(data) {
-                $('.sub-main-blogs-section').empty();
-                console.log('my category', data);
-                data.forEach(function(post) {
-                    // Construct post element
-                    var truncatedText = post.textBody.split(' ').slice(0, 30).join(' ');
-                    if (post.textBody.split(' ').length > 30) {
-                        truncatedText += '...';
-                    }
-
-                    if (post.category.toUpperCase() === category.toUpperCase()) {
-                        var postElement = `
-                            <div class="single-recently-blog">
-                                <img style="cursor:pointer" class="recently-blog-image" data-id="${post._id}" src="${post.image}" alt="">
-                                <div class="feature-this-month-blog-details recently">
-                                    <span class="this-month-blog-category recently">${post.category}</span>
-                                    <h1 class="this_month-blog-title recently" data-id="${post._id}">${post.title}</h1>
-                                    <div class="blog-sub-details recently">
-                                        <span class="blog-sub-details-section">
-                                            <img class="author_image" src="./assets/author.png" alt=""> ${post.author.name}&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                                        </span>
-                                        <span class="blog-sub-details recently">
-                                            <span class="blog-sub-details-section">
-                                                <i class="fa-regular fa-calendar"></i>&nbsp;&nbsp;${post.date}&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                                            </span>
-                                            <span class="blog-sub-details recently">
-                                                <span class="blog-sub-details-section">
-                                                    <i class="fa-regular fa-clock"></i>&nbsp;&nbsp;${post.duration} min. to read
-                                                </span>
-                                            </span>
-                                        </span>
-                                    </div>
-                                    <div class="this-month-blog-description recently">
-                                        ${truncatedText}
-                                    </div>
-                               
-                                </div>
-                            </div>
-                        `;
-                        $('.sub-main-blogs-section').append(postElement);
-                    }
-                });
-            },
-            error: function(err) {
-                console.error('Error fetching data:', err);
-            }
-        });
-    }
-
-    // Fetch data on initial page load
-    fetchCategoryData(category);
-});
-
-// Handle click events on blog images and titles
-$(document).on('click', '.recently-blog-image, .this_month-blog-title', function() {
-    const postId = $(this).data('id');
-    window.location.href = `http://localhost:7878/blog-page/${postId}`;
-});
-$(document).ready(function() {
-    // Typewriter effect remains unchanged
-    const texts = ["Unique", "Informative", "Engaging", "Inspiring"];
-    let count = 0;
-    let index = 0;
-    let currentText = '';
-    let letter = '';
-    const typewriterElement = document.getElementById('typewriter');
-    let isDeleting = false;
-
-    function type() {
-        if (count === texts.length) {
-            count = 0;
-        }
-        currentText = texts[count];
-
-        if (isDeleting) {
-            letter = currentText.slice(0, --index);
-        } else {
-            letter = currentText.slice(0, ++index);
-        }
-
-        typewriterElement.textContent = letter;
-        typewriterElement.style.opacity = 1;
-
-        if (!isDeleting && letter.length === currentText.length) {
-            setTimeout(() => {
-                isDeleting = true;
-                setTimeout(type, 100); // Start deleting
-            }, 2000); // Pause before starting to delete
-        } else if (isDeleting && letter.length === 0) {
-            isDeleting = false;
-            count++;
-            setTimeout(type, 500); // Start typing next word
-        } else {
-            setTimeout(type, isDeleting ? 50 : 100); // Adjust speed for typing and deleting
-        }
-    }
-
-    type();
-
-    var category = "<%= category %>";
-    console.log(category);
-
-    function fetchCategoryData(category, searchQuery = '') {
-        $.ajax({
-            url: '/blogs', // Assuming this route is defined in your Express app
-            type: 'GET',
-            success: function(data) {
-                $('.sub-main-blogs-section').empty();
-                console.log('my category', data);
-                data.forEach(function(post) {
-                    var truncatedText = post.textBody.split(' ').slice(0, 30).join(' ');
-                    if (post.textBody.split(' ').length > 30) {
-                        truncatedText += '...';
-                    }
-
-                    if (post.category.toUpperCase() === category.toUpperCase() && post.title.toLowerCase().includes(searchQuery.toLowerCase())) {
-                        var postElement = `
-                            <div class="single-recently-blog">
-                                <img style="cursor:pointer" class="recently-blog-image" data-id="${post._id}" src="${post.image}" alt="">
-                                <div class="feature-this-month-blog-details recently">
-                                    <span class="this-month-blog-category recently">${post.category}</span>
-                                    <h1 class="this_month-blog-title recently" data-id="${post._id}">${post.title}</h1>
-                                    <div class="blog-sub-details recently">
-                                        <span class="blog-sub-details-section">
-                                            <img class="author_image" src="./assets/author.png" alt=""> ${post.author.name}&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                                        </span>
-                                        <span class="blog-sub-details recently">
-                                            <span class="blog-sub-details-section">
-                                                <i class="fa-regular fa-calendar"></i>&nbsp;&nbsp;${post.date}&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                                            </span>
-                                            <span class="blog-sub-details recently">
-                                                <span class="blog-sub-details-section">
-                                                    <i class="fa-regular fa-clock"></i>&nbsp;&nbsp;${post.duration} min. to read
-                                                </span>
-                                            </span>
-                                        </span>
-                                    </div>
-                                    <div class="this-month-blog-description recently">
-                                        ${truncatedText}
-                                    </div>
-                               
-                                </div>
-                            </div>
-                        `;
-                        $('.sub-main-blogs-section').append(postElement);
-                    }
-                });
-            },
-            error: function(err) {
-                console.error('Error fetching data:', err);
-            }
-        });
-    }
-
-    // Fetch data on initial page load
-    fetchCategoryData(category);
-
-    // Handle search button click
     $('#search-button').on('click', function() {
         const searchQuery = $('#search-input').val();
-        fetchCategoryData(category, searchQuery);
+        const category = '<%= category %>';
+        const currentPage = '<%= currentPage %>';
+        window.location.href = `/categories/${category}?search=${searchQuery}&page=${currentPage}`;
     });
 
     // Handle click events on blog images and titles
     $(document).on('click', '.recently-blog-image, .this_month-blog-title', function() {
         const postId = $(this).data('id');
-        window.location.href = `http://localhost:7878/blog-page/${postId}`;
+        window.location.href = `/blog-page/${postId}`;
     });
 });
 
-
 </script>
-
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
