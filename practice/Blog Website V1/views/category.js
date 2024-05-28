@@ -64,7 +64,7 @@ $(document).ready(function() {
                                     <h1 class="this_month-blog-title recently" data-id="${post._id}">${post.title}</h1>
                                     <div class="blog-sub-details recently">
                                         <span class="blog-sub-details-section">
-                                            <img class="author_image" src="./assets/author.jpg" alt=""> ${post.author.name}&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                                            <img class="author_image" src="./assets/author.png" alt=""> ${post.author.name}&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
                                         </span>
                                         <span class="blog-sub-details recently">
                                             <span class="blog-sub-details-section">
