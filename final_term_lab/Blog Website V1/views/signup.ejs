@@ -1,0 +1,84 @@
+<!-- signup.ejs -->
+
+<div>
+  <div class="main-row">
+    <div class="left-portion-sup">
+      <img class="sup-logo" src="../assets/logox.png" alt="" />
+      <h1 class="welcome-text">Welcome Back</h1>
+      <p class="welcome-desc">
+        To keep connected with us please login with your personal info
+      </p>
+      <!-- HTML !-->
+      <button class="sin-button" onclick="window.location.href='/signin'" role="button">Sign In</button>
+      <a style="position: absolute; bottom: 1vw;left: 24vw;color: white;" href="/">Continue as a guest <i class="fa-solid fa-arrow-right"></i></a></p>
+
+    </div>
+    <div class="right-portion-sup">
+      <h1 class="create-acc-text">Create Account</h1>
+      <div class="sup-icons-div">
+
+        <div class="signup-icons"><i class="fa-brands fa-facebook-f"></i></div>
+        <div class="signup-icons">
+          <i class="fa-brands fa-google-plus-g"></i>
+        </div>
+        <div class="signup-icons"><i class="fa-brands fa-linkedin-in"></i></div>
+      </div>
+      <p class="create-acc-desc">or use your email for registration</p>
+      <form id="signupForm" action="/signup" method="POST" onsubmit="return validateForm()">
+        <div class="input-control">
+          <input name="name" type="text" class="form-control" id="nameInput" placeholder="Name">
+          <div class="error" id="nameError"></div>
+        </div>
+
+        <div class="input-control">
+          <input name="email" type="text" class="form-control" id="emailInput" placeholder="Email">
+          <div class="error" id="emailError"></div>
+        </div>
+
+        <div class="input-control">
+          <input name="password" type="password" class="form-control" id="passwordInput" placeholder="Password">
+          <div class="error" id="passwordError"></div>
+        </div><br />
+        <% if (errorMessage) { %>
+          <p  style="color: red;text-align: center;"><%= errorMessage %></p>
+      <% } %>
+        <button class="sup-button" type="submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  function validateForm() {
+   
+    document.getElementById("nameError").innerHTML = "";
+    document.getElementById("emailError").innerHTML = "";
+    document.getElementById("passwordError").innerHTML = "";
+
+    var name = document.getElementById("nameInput").value;
+    var email = document.getElementById("emailInput").value;
+    var password = document.getElementById("passwordInput").value;
+
+    var isValid = true;
+
+ 
+    if (name.length < 4) {
+      document.getElementById("nameError").innerHTML = "<p style='color:#00968c;font-size:1vw'>Name must be at least 4 characters</p>";
+      isValid = false;
+    }
+
+    var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (!emailRegex.test(email)) {
+      document.getElementById("emailError").innerHTML = "<p style='color:#00968c;font-size:1vw'>Enter a valid email address</p>";
+      isValid = false;
+    }
+
+    if (password.length < 6) {
+      document.getElementById("passwordError").innerHTML = "<p style='color:#00968c;font-size:1vw'>Password must be at least 6 characters</p>";
+      isValid = false;
+    }
+
+    return isValid;
+  }
+</script>
+
