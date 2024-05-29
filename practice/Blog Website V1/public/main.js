@@ -5,12 +5,10 @@ $(document).ready(function() {
             url: '/regularBlogs',
             type: 'GET',
             success: function(data) {
-                // Filter posts where type is "regular"
-                
-                // Do whatever you want with the regularPosts array here
+           
                 console.log('Regular blog data:', data);
                 
-                // If you want to further process or display the regularPosts array, you can do it here
+               
                 
             },
             error: function(xhr, status, error) {
@@ -21,19 +19,18 @@ $(document).ready(function() {
  fetchRegularBlogData0();
 
 
- var limitPerPage = 6; // Number of blogs per page
- var currentPage = 1; // Current page number
+ var limitPerPage = 6; 
+ var currentPage = 1;
 
- // Get the page number from the URL query parameter if available
+ 
  var urlParams = new URLSearchParams(window.location.search);
- var page = parseInt(urlParams.get('page')); // Parse page number to integer
+ var page = parseInt(urlParams.get('page')); 
 
- // If the parsed page number is valid, set it as the current page
+
  if (!isNaN(page) && page > 0) {
      currentPage = page;
  }
 
- // Function to fetch and display regular blogs with pagination
  function fetchRegularBlogData(currentPage) {
     var skip = (currentPage - 1) * limitPerPage;
     $.ajax({
@@ -45,7 +42,7 @@ $(document).ready(function() {
         },
         success: function(data) {
             $('.sub-main-blogs-section').empty();
-            totalRegularBlogs = data.totalCount; // Assuming the backend sends total count
+            totalRegularBlogs = data.totalCount;
             data.posts.forEach(function(post) {
                 const firstName = post.author.name.split(' ')[0];
                 const limitedTextBody = post.textBody.split(' ').slice(0, 30).join(' ');
@@ -93,14 +90,14 @@ $(document).ready(function() {
     });
 }
 
- // Function to generate pagination buttons
+
  function generateNavigationButtons(currentPage, totalItems, limitPerPage) {
      var totalPages = Math.ceil(totalItems / limitPerPage);
      var $pageNavigation = $('.page-navigation-buttons');
      $pageNavigation.empty();
 
      if (totalPages > 1) {
-         // Previous button
+         
          var $prevButton = $('<button class="prev-button" type="button"><i class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Prev</button>');
          $prevButton.on('click', function() {
              if (currentPage > 1) {
@@ -109,7 +106,7 @@ $(document).ready(function() {
          });
          $pageNavigation.append($prevButton);
 
-         // Number buttons
+    
          for (var i = 1; i <= totalPages; i++) {
              var $numButton = $('<button class="num-btn" type="button">' + i + '</button>');
              $numButton.on('click', { pageNumber: i }, function(event) {
@@ -118,7 +115,7 @@ $(document).ready(function() {
              $pageNavigation.append($numButton);
          }
 
-         // Next button
+         
          var $nextButton = $('<button class="next-button" type="button">Next &nbsp;&nbsp;&nbsp;<i class="fa-solid fa-arrow-right"></i></button>');
          $nextButton.on('click', function() {
              if (currentPage < totalPages) {
@@ -129,21 +126,15 @@ $(document).ready(function() {
      }
  }
 
- // Initial call to fetch regular blogs
+
  fetchRegularBlogData(1);
 
- // Event listener for recently-blog-image
+ 
  $(document).on('click', '.recently-blog-image', function() {
      const postId = $(this).data('id');
      window.location.href = `http://localhost:7878/blog-page/${postId}`;
  });
 
-    
-      
-    
-        // Rest of your code...
-  
-    
 
     function fetchThisMonthBlogs() {
         $.ajax({
@@ -151,13 +142,13 @@ $(document).ready(function() {
             type: 'GET',
             success: function(data) {
                 $('.left-feature-this-month').empty();
-                var isFirstPost = true; // Flag to check if it's the first post
+                var isFirstPost = true; 
                 data.forEach(function(post) {
                     if (post.type === 'this-month') {
                         const firstName = post.author.name.split(' ')[0];
-                            // Limit text body to 30 words
+                            
                             const limitedTextBody = post.textBody.split(' ').slice(0, 15).join(' ');
-                            // Add "..." if text body is longer than 30 words
+                           
                             const textBodyToShow = post.textBody.split(' ').length > 15 ? limitedTextBody + "..." : post.textBody;
                         var postElement = `
                             <div class="feature-this-month-blogs">
@@ -188,7 +179,7 @@ $(document).ready(function() {
                             </div>
                         `;
                         $('.left-feature-this-month').append(postElement);
-                        isFirstPost = false; // Set the flag to false after adding the first post
+                        isFirstPost = false; 
                     }
                 });
             },
@@ -200,10 +191,10 @@ $(document).ready(function() {
 
     fetchThisMonthBlogs();
     $(document).on('mouseenter', '.recently-blog-image', function() {
-        // When mouse enters the image area, apply CSS class to enlarge and fade
+    
         $(this).addClass('hovered-image');
     }).on('mouseleave', '.recently-blog-image', function() {
-        // When mouse leaves the image area, remove CSS class to revert to original size and opacity
+     
         $(this).removeClass('hovered-image');
     });
     $(document).on('click', '.this_month-blog-title,.dummy-image-1', function() {
@@ -211,24 +202,23 @@ $(document).ready(function() {
         window.location.href = `http://localhost:7878/blog-page/${postId}`;
     });
 
-    var isPopularTitleAppended = false; // Flag to track if the title is appended
-
+    var isPopularTitleAppended = false; 
     function fetchPopularBlogs() {
         $.ajax({
             url: '/blogs',
             type: 'GET',
             success: function(data) {
                 $('.right-feature-this-month').empty();
-                var popularPosts = data.filter(post => post.type === 'popular'); // Filter popular type posts
-                popularPosts.sort((a, b) => new Date(b.date) - new Date(a.date)); // Sort by date, newest first
-                popularPosts = popularPosts.slice(0, 4); // Limit to 4 posts
-                
-                // Append title if not already appended
+                var popularPosts = data.filter(post => post.isFeatured === true);
+ 
+                popularPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+                popularPosts = popularPosts.slice(0, 4); 
+       
                 if (!isPopularTitleAppended) {
                     $('.right-feature-this-month').append(`
-                        <h1 class="title-this-month recently"><span class="feature-word">Popular</span>&nbsp;Posted</h1>
+                        <h1 class="title-this-month recently"><span class="feature-word">Featured</span>&nbsp;Posted</h1>
                     `);
-                    isPopularTitleAppended = true; // Set flag to true
+                    isPopularTitleAppended = true; 
                 }
     
                 popularPosts.forEach(function(post) {

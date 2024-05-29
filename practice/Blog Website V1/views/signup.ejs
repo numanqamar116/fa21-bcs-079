@@ -50,32 +50,29 @@
 
 <script>
   function validateForm() {
-    // Reset error messages
+   
     document.getElementById("nameError").innerHTML = "";
     document.getElementById("emailError").innerHTML = "";
     document.getElementById("passwordError").innerHTML = "";
 
-    // Get form inputs
     var name = document.getElementById("nameInput").value;
     var email = document.getElementById("emailInput").value;
     var password = document.getElementById("passwordInput").value;
 
     var isValid = true;
 
-    // Validate name
+ 
     if (name.length < 4) {
       document.getElementById("nameError").innerHTML = "<p style='color:#00968c;font-size:1vw'>Name must be at least 4 characters</p>";
       isValid = false;
     }
 
-    // Validate email
     var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (!emailRegex.test(email)) {
       document.getElementById("emailError").innerHTML = "<p style='color:#00968c;font-size:1vw'>Enter a valid email address</p>";
       isValid = false;
     }
 
-    // Validate password
     if (password.length < 6) {
       document.getElementById("passwordError").innerHTML = "<p style='color:#00968c;font-size:1vw'>Password must be at least 6 characters</p>";
       isValid = false;

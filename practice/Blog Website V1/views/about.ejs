@@ -1,114 +1,103 @@
-<div style=" background-color: #ffffff;
-opacity: 0.8;
-background-image: radial-gradient(circle at center center, #0aaa5211, #ffffff), repeating-radial-gradient(circle at center center, #0aaa5211, #0aaa5211, 10px, transparent 20px, transparent 10px);
-background-blend-mode: multiply;" class="b-container">
-
+<div style="background-color: #ffffff; opacity: 0.8; background-image: radial-gradient(circle at center center, #0aaa5211, #ffffff), repeating-radial-gradient(circle at center center, #0aaa5211, #0aaa5211, 10px, transparent 20px, transparent 10px); background-blend-mode: multiply;" class="b-container">
     <div class="image-container">
         <img class="blog-cover-image" src="/assets/blog-covers.jpg" alt="">
-    <div class="overlay"></div>
-    <p  data-aos="fade-up"
-    data-aos-duration="3000" class="intro-text">&nbsp;&nbsp;Write a Blog </p>
-    <p class="typewriter-text" id="typewriter"></p>
-   <!-- HTML !-->
-   <button class="button-68" role="button" onclick="location.href='/editBlog'">Write A Blog</button>
-</div>
-<div>
-    
-</div>
-<div class="about-container">
-    <div class="about-title">
-        <h1 style="font-size: 3.5vw;font-weight: bold;color: rgb(0, 168, 112);">Salient Features of Our Blog Website</h1>
+        <div class="overlay"></div>
+        <p data-aos="fade-up" data-aos-duration="3000" class="intro-text">&nbsp;&nbsp;Write a Blog</p>
+        <p class="typewriter-text" id="typewriter"></p>
+        <button class="button-68" role="button" onclick="location.href='/editBlog'">Write A Blog</button>
     </div>
-    <ul class="about-list">
-        <li class="about-item">
-            <div class="about-item-title">User-Friendly Interface</div>
-            <div class="about-item-description">Intuitive navigation with a clean, modern design. Responsive layout ensuring optimal viewing on all devices.</div>
-        </li>
-        <li class="about-item">
-            <div class="about-item-title">High-Quality Content</div>
-            <div class="about-item-description">Well-researched articles with in-depth analysis. Regular updates with fresh and relevant content.</div>
-        </li>
-        <li class="about-item">
-            <div class="about-item-title">Engaging Multimedia</div>
-            <div class="about-item-description">Rich media integration including high-resolution images, videos, and infographics. Interactive elements such as polls and quizzes to engage readers.</div>
-        </li>
-        <li class="about-item">
-            <div class="about-item-title">Search Engine Optimization (SEO)</div>
-            <div class="about-item-description">SEO-friendly content to improve visibility and search rankings. Keywords and meta descriptions optimized for better search results.</div>
-        </li>
-        <li class="about-item">
-            <div class="about-item-title">Community Interaction</div>
-            <div class="about-item-description">Comment sections allowing readers to share their thoughts and feedback. Social media integration for easy sharing and connectivity.</div>
-        </li>
-        <li class="about-item">
-            <div class="about-item-title">Subscription and Notifications</div>
-            <div class="about-item-description">Email subscription options to keep readers updated with the latest posts. Push notifications for instant updates on new content.</div>
-        </li>
-        <li class="about-item">
-            <div class="about-item-title">Secure and Fast</div>
-            <div class="about-item-description">Secure website with SSL encryption ensuring user data protection. Fast loading times for a seamless user experience.</div>
-        </li>
-        <li class="about-item">
-            <div class="about-item-title">Categories and Tags</div>
-            <div class="about-item-description">Organized content with categories and tags for easy navigation. Related post suggestions to keep readers engaged.</div>
-        </li>
-        <li class="about-item">
-            <div class="about-item-title">Author Profiles</div>
-            <div class="about-item-description">Detailed author bios with links to their social media and other works. Guest blogging options to introduce new voices and perspectives.</div>
-        </li>
-        <li class="about-item">
-            <div class="about-item-title">Monetization Options</div>
-            <div class="about-item-description">Ad placements and sponsored content opportunities. Affiliate marketing links to generate revenue.</div>
-        </li>
-        <li class="about-item">
-            <div class="about-item-title">Analytics and Insights</div>
-            <div class="about-item-description">Integrated analytics to track website performance and user behavior. Regular reports to help optimize content and marketing strategies.</div>
-        </li>
-        <li class="about-item">
-            <div class="about-item-title">Accessibility Features</div>
-            <div class="about-item-description">Accessible design ensuring inclusivity for all users. Options for font size adjustment and text-to-speech functionality.</div>
-        </li>
-    </ul>
+    <div></div>
+    <div class="about-container">
+        <div class="about-title">
+            <h1 style="font-size: 3.5vw; font-weight: bold; color: rgb(0, 168, 112);">Salient Features of Our Blog Website</h1>
+        </div>
+        <ul class="about-list">
+            <!-- List items here -->
+        </ul>
+    </div>
 </div>
+
+<div class="feature-container" id="feature-container">
+    <h2>Featured Blogs</h2>
 </div>
+
 <script>
-    $(document).ready(function() {
-    const texts = ["Fashion", "LIfestyle", "Politics", "Travelling"];
-    let count = 0;
-    let index = 0;
-    let currentText = '';
-    let letter = '';
-    const typewriterElement = document.getElementById('typewriter');
-    let isDeleting = false;
+    $(document).ready(function () {
+        const texts = ["Fashion", "Lifestyle", "Politics", "Travelling"];
+        let count = 0;
+        let index = 0;
+        let currentText = '';
+        let letter = '';
+        const typewriterElement = document.getElementById('typewriter');
+        let isDeleting = false;
 
-    function type() {
-        if (count === texts.length) {
-            count = 0;
+        function type() {
+            if (count === texts.length) {
+                count = 0;
+            }
+            currentText = texts[count];
+
+            if (isDeleting) {
+                letter = currentText.slice(0, --index);
+            } else {
+                letter = currentText.slice(0, ++index);
+            }
+
+            typewriterElement.textContent = letter;
+            typewriterElement.style.opacity = 1;
+
+            if (!isDeleting && letter.length === currentText.length) {
+                setTimeout(() => {
+                    isDeleting = true;
+                    setTimeout(type, 100);
+                }, 2000);
+            } else if (isDeleting && letter.length === 0) {
+                isDeleting = false;
+                count++;
+                setTimeout(type, 500);
+            } else {
+                setTimeout(type, isDeleting ? 50 : 100);
+            }
         }
-        currentText = texts[count];
 
-        if (isDeleting) {
-            letter = currentText.slice(0, --index);
-        } else {
-            letter = currentText.slice(0, ++index);
-        }
+        type();
 
-        typewriterElement.textContent = letter;
-        typewriterElement.style.opacity = 1;
-
-        if (!isDeleting && letter.length === currentText.length) {
-            setTimeout(() => {
-                isDeleting = true;
-                setTimeout(type, 100); // Start deleting
-            }, 2000); // Pause before starting to delete
-        } else if (isDeleting && letter.length === 0) {
-            isDeleting = false;
-            count++;
-            setTimeout(type, 500); // Start typing next word
-        } else {
-            setTimeout(type, isDeleting ? 50 : 100); // Adjust speed for typing and deleting
-        }
-    }
-
-    type();})
+        // Fetch featured blogs
+        fetch('/featuredBlogs')
+            .then(response => response.json())
+            .then(blogs => {
+                const featureContainer = document.getElementById('feature-container');
+                blogs.forEach(blog => {
+                    const blogDiv = document.createElement('div');
+                    blogDiv.className = 'blog-item';
+                    blogDiv.innerHTML = `
+                        <h3>${blog.title}</h3>
+                        <p>By ${blog.author.name} on ${blog.date}</p>
+                        <img src="${blog.image}" alt="${blog.title}">
+                        <p>${blog.textBody.substring(0, 150)}...</p>
+                        <p>Category: ${blog.category}</p>
+                        <p>Duration: ${blog.duration} mins</p>
+                        <a href="/blogs/${blog._id}">Read More</a>
+                    `;
+                    featureContainer.appendChild(blogDiv);
+                });
+            })
+            .catch(err => {
+                console.error('Error fetching featured blogs:', err);
+            });
+    });
 </script>
+
+<style>
+    .blog-item {
+        border: 1px solid #ccc;
+        padding: 16px;
+        margin: 16px;
+        border-radius: 8px;
+        background-color: #fff;
+    }
+    .blog-item img {
+        max-width: 100%;
+        height: auto;
+    }
+</style>

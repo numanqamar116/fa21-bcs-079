@@ -37,7 +37,11 @@ const blogSchema = new mongoose.Schema({
     author_intro:{
         type:String,
         required:true
-    }
+    },
+    isFeatured: {
+        type: Boolean,
+        default: false
+        }
 
 });
 

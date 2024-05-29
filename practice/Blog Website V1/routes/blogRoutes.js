@@ -67,6 +67,9 @@ router.delete('/blogs/:id', async (req, res) => {
 router.get('/blog-page/:id', async (req, res) => {
     try {
         const blog = await Blog.findById(req.params.id);
+
+        req.session.visitedProducts = req.session.visitedProducts || [];
+        req.session.visitedProducts.push(req.params.id);
         if (!blog) {
             res.status(404).send('Blog not found');
             return;
@@ -157,5 +160,18 @@ router.get('/categories/:category?', async (req, res) => {
 
 });
 
+router.get('/visited-blogs', async (req, res) => {
+    try {
+        if (!req.session.visitedProducts || req.session.visitedProducts.length === 0) {
+            return res.status(404).send('No visited products found');
+        }
+
+        const visitedBlogs = await Blog.find({ _id: { $in: req.session.visitedProducts } });
+        res.render('visited-blogs', { visitedBlogs,title: visitedBlogs.title, }); // Render the EJS file with the data
+    } catch (err) {
+        console.error('Error fetching visited blogs:', err);
+        res.status(500).send({ message: err.message });
+    }
+});
 
 module.exports = router;

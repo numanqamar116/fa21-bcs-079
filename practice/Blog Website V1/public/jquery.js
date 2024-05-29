@@ -1,7 +1,7 @@
 $(document).ready(function () {
     let imessageEditor;
 
-    // Initialize CKEditor
+   
     ClassicEditor
         .create(document.querySelector('#imessage'), {
             toolbar: {
@@ -28,14 +28,14 @@ $(document).ready(function () {
             console.error('There was a problem initializing the blog content editor.', error);
         });
 
-    // Form submission handling
+    
     $('#form').on('submit', function (event) {
         event.preventDefault();
 
-        // Perform validation checks
+        
         let isValid = true;
 
-        // Check if each field is filled, if not, display error message
+        
         if ($('#ititle').val().trim() === '') {
             $('#ititle').next('.error').text('Title is required');
             isValid = false;
@@ -93,7 +93,6 @@ $(document).ready(function () {
             $('#imessage').next('.error').text('');
         }
 
-        // If form is not valid, prevent submission
         if (!isValid) {
             return;
         }
@@ -107,7 +106,7 @@ $(document).ready(function () {
     });
 
     var totalBlogs = 0;
-    var limitPerPage = 6; // Number of blogs per page
+    var limitPerPage = 6; 
 
     $.ajax({
         url: '/authorsBlogs',
@@ -119,16 +118,16 @@ $(document).ready(function () {
     });
 
     var urlParams = new URLSearchParams(window.location.search);
-    console.log('URL Query String:', window.location.search); // Log the entire query string
-    var page = urlParams.get('page'); // Define the page variable
-    console.log('Page Number:', page); // Log the page parameter
+    console.log('URL Query String:', window.location.search); 
+    var page = urlParams.get('page'); 
+    console.log('Page Number:', page);
 
-    // Fetch blog data for the specified page
+   
     fetchBlogData(page);
 
     function fetchBlogData(page) {
-        var pageNumber = page || 1; // Default to page 1 if no page number is provided
-        var skip = (pageNumber - 1) * limitPerPage; // Calculate skip value for pagination
+        var pageNumber = page || 1;
+        var skip = (pageNumber - 1) * limitPerPage; 
         var url = '/authorsBlogs?page=' + pageNumber + '&limit=' + limitPerPage;
 
         $.ajax({
@@ -184,11 +183,11 @@ $(document).ready(function () {
                 $('.update-btn').on('click', function () {
                     var postId = $(this).data('id');
                     populateFormFields(postId);
-                    // Scroll to the top of the page
+                    
                     $('html, body').animate({ scrollTop: 0 }, 'slow');
                 });
 
-                // Update URL to include the page number
+               
                 if (window.location.pathname === '/editBlog') {
                     var newUrl = window.location.pathname + '?page=' + pageNumber;
                     window.history.pushState({ path: newUrl }, '', newUrl);
@@ -227,9 +226,9 @@ $(document).ready(function () {
             },
             date: $('#idate').val(),
             image: $('#iimage').val(),
-            textBody: imessageEditor.getData(), // Get the CKEditor content
-            duration: $('#iduration').val(), // Include the duration
-            author_intro: $('#iauthor_intro').val(), // Include the author introduction
+            textBody: imessageEditor.getData(), 
+            duration: $('#iduration').val(), 
+            author_intro: $('#iauthor_intro').val(), 
             type: $('#itype').val(),
             category: $('#icategory').val()
         };
@@ -250,15 +249,15 @@ $(document).ready(function () {
             }
         });
     }
-
+  
     function updateBlogPost(postId) {
         var updateData = {
             title: $('#ititle').val(),
             date: $('#idate').val(),
             image: $('#iimage').val(),
-            textBody: imessageEditor.getData(), // Get the CKEditor content
-            duration: $('#iduration').val(), // Include the duration
-            author_intro: $('#iauthor_intro').val(), // Include the author introduction
+            textBody: imessageEditor.getData(), 
+            duration: $('#iduration').val(), 
+            author_intro: $('#iauthor_intro').val(), 
             type: $('#itype').val(),
             category: $('#icategory').val()
         };
@@ -287,7 +286,7 @@ $(document).ready(function () {
         $pageNavigation.empty();
 
         if (totalPages > 1) {
-            // Previous button
+            
             var $prevButton = $('<div style="margin-top: 2vw"><button class="prev-button" type="button"><i class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Prev</button></div>');
             $prevButton.on('click', function () {
                 if (currentPage > 1) {
@@ -297,7 +296,7 @@ $(document).ready(function () {
             });
             $pageNavigation.append($prevButton);
 
-            // Number buttons
+           
             for (var i = 1; i <= totalPages; i++) {
                 var $numButton = $('<button style="margin-top: 2vw" class="num-btn" type="button">' + i + '</button>');
                 $numButton.on('click', { pageNumber: i }, function (event) {
@@ -307,7 +306,7 @@ $(document).ready(function () {
                 $pageNavigation.append($numButton);
             }
 
-            // Next button
+       
             var $nextButton = $('<button style="margin-top: 2vw" class="next-button" type="button">Next &nbsp;&nbsp;&nbsp;<i class="fa-solid fa-arrow-right"></i></button>');
             $nextButton.on('click', function () {
                 if (currentPage < totalPages) {
@@ -332,9 +331,9 @@ $(document).ready(function () {
                 $('#iemail').val(post.author.name);
                 $('#idate').val(post.date);
                 $('#iimage').val(post.image);
-                imessageEditor.setData(post.textBody); // Set the CKEditor content
-                $('#iduration').val(post.duration); // Populate the duration
-                $('#iauthor_intro').val(post.author_intro); // Populate the author introduction
+                imessageEditor.setData(post.textBody); 
+                $('#iduration').val(post.duration); 
+                $('#iauthor_intro').val(post.author_intro); 
                 $('#itype').val(post.type);
                 $('#icategory').val(post.category);
                 $('#form').data('postId', postId);
@@ -348,14 +347,14 @@ $(document).ready(function () {
     fetchBlogData(page);
 
     function showAlert(type, message) {
-        // Clear existing alerts
+
         $('.alert').remove();
     
-        // Create and append alert element
+        
         var alertElement = $('<div class="alert alert-' + type + '" role="alert">' + message + '</div>');
         $('#form').prepend(alertElement);
     
-        // Automatically hide the alert after 3 seconds
+       
         setTimeout(function () {
             alertElement.fadeOut('slow', function () {
                 $(this).remove();

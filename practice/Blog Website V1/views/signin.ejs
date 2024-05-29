@@ -46,30 +46,29 @@
     <script>
         $(document).ready(function () {
             $('#signupForm').submit(function (event) {
-                // Prevent form submission
+                
                 event.preventDefault();
-                // Reset previous error messages
+                
                 $('.error').text('');
 
-                // Validate email
+                
                 var email = $('#email').val();
                 if (!isValidEmail(email)) {
                     $('#emailError').text('Please enter a valid email address');
                     return;
                 }
 
-                // Validate password
                 var password = $('#password').val();
                 if (password.length < 6) {
                     $('#passwordError').text('Password must be at least 6 characters long');
                     return;
                 }
 
-                // Submit the form if validation passes
+            
                 this.submit();
             });
 
-            // Function to validate email format
+            
             function isValidEmail(email) {
                 var emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
                 return emailRegex.test(email);

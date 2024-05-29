@@ -25,14 +25,14 @@ $(document).ready(function() {
         if (!isDeleting && letter.length === currentText.length) {
             setTimeout(() => {
                 isDeleting = true;
-                setTimeout(type, 100); // Start deleting
-            }, 2000); // Pause before starting to delete
+                setTimeout(type, 100); 
+            }, 2000);
         } else if (isDeleting && letter.length === 0) {
             isDeleting = false;
             count++;
-            setTimeout(type, 500); // Start typing next word
+            setTimeout(type, 500);
         } else {
-            setTimeout(type, isDeleting ? 50 : 100); // Adjust speed for typing and deleting
+            setTimeout(type, isDeleting ? 50 : 100); 
         }
     }
 
@@ -43,13 +43,13 @@ $(document).ready(function() {
 
     function fetchCategoryData(category) {
         $.ajax({
-            url: '/blogs', // Assuming this route is defined in your Express app
+            url: '/blogs', 
             type: 'GET',
             success: function(data) {
                 $('.sub-main-blogs-section').empty();
                 console.log('my category', data);
                 data.forEach(function(post) {
-                    // Construct post element
+                    
                     var truncatedText = post.textBody.split(' ').slice(0, 30).join(' ');
                     if (post.textBody.split(' ').length > 30) {
                         truncatedText += '...';
@@ -94,11 +94,10 @@ $(document).ready(function() {
         });
     }
 
-    // Fetch data on initial page load
     fetchCategoryData(category);
 });
 
-// Handle click events on blog images and titles
+
 $(document).on('click', '.recently-blog-image, .this_month-blog-title', function() {
     const postId = $(this).data('id');
     window.location.href = `http://localhost:7878/blog-page/${postId}`;

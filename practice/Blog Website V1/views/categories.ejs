@@ -1,5 +1,5 @@
 <style>
-    /* Pagination Styles */
+   
     .pagination {
         display: flex;
         justify-content: center;
@@ -31,7 +31,7 @@
         cursor: not-allowed;
     }
 
-    /* Search History Dropdown Styles */
+    
     .search-history-dropdown {
         position: absolute;
         background-color: white;
@@ -69,7 +69,7 @@
         <input type="text" id="search-input" name="search" placeholder="Search blogs..." value="<%= searchQuery %>" style="padding: 10px; width: 50%; font-size: 1.2em;" autocomplete="off">
         <button type="submit" id="search-button" style="padding: 10px 20px; font-size: 1.2em; background-color: rgb(18, 151, 107); color: white; border: none; cursor: pointer;">Search</button>
     </form>
-    <% if (user) { %> <!-- Assuming `user` is a variable that indicates if a user is logged in -->
+    <% if (user) { %>
         <div id="search-history-dropdown" class="search-history-dropdown">
             <% searchHistory.forEach(function(query) { %>
                 <a href="#" class="search-history-item"><%= query %></a>
@@ -152,14 +152,14 @@
         if (!isDeleting && letter.length === currentText.length) {
             setTimeout(() => {
                 isDeleting = true;
-                setTimeout(type, 100); // Start deleting
-            }, 2000); // Pause before starting to delete
+                setTimeout(type, 100); 
+            }, 2000); 
         } else if (isDeleting && letter.length === 0) {
             isDeleting = false;
             count++;
-            setTimeout(type, 500); // Start typing next word
+            setTimeout(type, 500); 
         } else {
-            setTimeout(type, isDeleting ? 50 : 100); // Adjust speed for typing and deleting
+            setTimeout(type, isDeleting ? 50 : 100);
         }
     }
 
@@ -179,7 +179,6 @@
         $('#search-form').submit();
     });
 
-    // Handle click events on blog images and titles
     $(document).on('click', '.recently-blog-image, .this_month-blog-title', function() {
         const postId = $(this).data('id');
         window.location.href = `/blog-page/${postId}`;
