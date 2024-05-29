@@ -1,0 +1,37 @@
+<div class="visited-blogs">
+    <% if (visitedBlogs && visitedBlogs.length > 0) { %>
+        <% visitedBlogs.forEach(post => { %>
+            <div class="single-recently-blog">
+                <img class="recently-blog-image" data-id="<%= post._id %>" src="<%= post.image %>" alt="">
+                <div class="feature-this-month-blog-details recently">
+                    <span class="this-month-blog-category recently"><%= post.category %></span>
+                    <h1 class="this_month-blog-title recently" data-id="<%= post._id %>"><%= post.title %></h1>
+                    <div class="blog-sub-details recently">
+                        <span class="blog-sub-details-section">
+                            <img class="author_image" src="./assets/author.png" alt=""> <%= post.author.name %>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                        </span>
+                        <span class="blog-sub-details recently">
+                            <span class="blog-sub-details-section">
+                                <i class="fa-regular fa-calendar"></i>&nbsp;&nbsp;<%= post.date %>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                            </span>
+                            <span class="blog-sub-details recently">
+                                <span class="blog-sub-details-section">
+                                    <i class="fa-regular fa-clock"></i>&nbsp;&nbsp;<%= post.duration %> min. to read
+                                </span>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="this-month-blog-description recently">
+                        <%= post.textBody.substring(0, 200) %>... <!-- Truncate the text if needed -->
+                    </div>
+                    <div class="blog-buttons">
+                        <button class="delete-btn btn btn-secondary" data-id="<%= post._id %>">Delete</button>
+                        <button class="update-btn btn btn-secondary" data-id="<%= post._id %>">Update</button>
+                    </div>
+                </div>
+            </div>
+        <% }); %>
+    <% } else { %>
+        <p>No visited blogs found.</p>
+    <% } %>
+</div>

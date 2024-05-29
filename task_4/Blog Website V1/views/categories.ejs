@@ -1,0 +1,187 @@
+<style>
+   
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+    }
+
+    .pagination-button {
+        padding: 10px 20px;
+        margin: 0 5px;
+        background-color: #08a873;
+        color: white !important;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .pagination-button:hover {
+        background-color: #107855;
+    }
+
+    .pagination-button.active {
+        background-color: #0D5E42;
+    }
+
+    .pagination-button:disabled {
+        background-color: #9E9E9E;
+        cursor: not-allowed;
+    }
+
+    
+    .search-history-dropdown {
+        position: absolute;
+        background-color: white;
+        border: 1px solid #ccc;
+        width: 50%;
+        max-height: 200px;
+        overflow-y: auto;
+        z-index: 1000;
+        display: none;
+        margin-left:  20.6vw;
+    }
+
+    .search-history-dropdown a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: #333;
+       
+    }
+
+    .search-history-dropdown a:hover {
+        background-color: #f0f0f0;
+    }
+
+</style>
+<div class="image-container">
+    <img class="blog-cover-image" src="/assets/blog-cover.jpg" alt="">
+    <div class="overlay"></div>
+    <p data-aos="fade-up" data-aos-duration="3000" class="intro-text">Our Blogs Are </p>
+    <p class="typewriter-text" id="typewriter"></p>
+    <button onclick="window.location.href='/contact-us'" class="button-68" role="button">Contact Us</button>
+</div>
+<div class="search-container" style="text-align: center; margin: 20px 0; position: relative;">
+    <form id="search-form" action="/categories/<%= category %>" method="GET">
+        <input type="text" id="search-input" name="search" placeholder="Search blogs..." value="<%= searchQuery %>" style="padding: 10px; width: 50%; font-size: 1.2em;" autocomplete="off">
+        <button type="submit" id="search-button" style="padding: 10px 20px; font-size: 1.2em; background-color: rgb(18, 151, 107); color: white; border: none; cursor: pointer;">Search</button>
+    </form>
+    <% if (user) { %>
+        <div id="search-history-dropdown" class="search-history-dropdown">
+            <% searchHistory.forEach(function(query) { %>
+                <a href="#" class="search-history-item"><%= query %></a>
+            <% }); %>
+        </div>
+    <% } %>
+</div>
+
+<div>
+    <h1 style="text-align: center; font-size: 3vw; margin-top: 2vw; margin-bottom: 2vw; text-decoration: underline; font-weight: bold; color: rgb(18, 151, 107);" class="title-page-category"><%= category %></h1>
+</div>
+<div class="sub-main-blogs-section editblog">
+    <% blogs.forEach(function(blog) { %>
+        <div class="single-recently-blog">
+            <img style="cursor:pointer" class="recently-blog-image" data-id="<%= blog._id %>" src="<%= blog.image %>" alt="">
+            <div class="feature-this-month-blog-details recently">
+                <span class="this-month-blog-category recently"><%= blog.category %></span>
+                <h1 class="this_month-blog-title recently" data-id="<%= blog._id %>"><%= blog.title %></h1>
+                <div class="blog-sub-details recently">
+                    <span class="blog-sub-details-section">
+                        <img class="author_image" src="/assets/author.png" alt=""> <%= blog.author.name %>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                    </span>
+                    <span class="blog-sub-details recently">
+                        <span class="blog-sub-details-section">
+                            <i class="fa-regular fa-calendar"></i>&nbsp;&nbsp;<%= blog.date %>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                        </span>
+                        <span class="blog-sub-details recently">
+                            <span class="blog-sub-details-section">
+                                <i class="fa-regular fa-clock"></i>&nbsp;&nbsp;<%= blog.duration %> min. to read
+                            </span>
+                        </span>
+                    </span>
+                </div>
+                <div class="this-month-blog-description recently">
+                    <%- blog.textBody.split(' ').slice(0, 30).join(' ') %>...
+                </div>
+            </div>
+        </div>
+    <% }); %>
+</div>
+<div class="pagination">
+    <% if (currentPage > 1) { %>
+        <a href="/categories/<%= category %>?page=<%= currentPage - 1 %>&search=<%= searchQuery %>" class="pagination-button">Previous</a>
+    <% } %>
+    <% for (let i = 1; i <= totalPages; i++) { %>
+        <a href="/categories/<%= category %>?page=<%= i %>&search=<%= searchQuery %>" class="pagination-button <%= currentPage === i ? 'active' : '' %>"><%= i %></a>
+    <% } %>
+    <% if (currentPage < totalPages) { %>
+        <a href="/categories/<%= category %>?page=<%= currentPage + 1 %>&search=<%= searchQuery %>" class="pagination-button">Next</a>
+    <% } %>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="./category.js"></script>
+<script>
+   $(document).ready(function() {
+    const texts = ["Unique", "Informative", "Engaging", "Inspiring"];
+    let count = 0;
+    let index = 0;
+    let currentText = '';
+    let letter = '';
+    const typewriterElement = document.getElementById('typewriter');
+    let isDeleting = false;
+
+    function type() {
+        if (count === texts.length) {
+            count = 0;
+        }
+        currentText = texts[count];
+
+        if (isDeleting) {
+            letter = currentText.slice(0, --index);
+        } else {
+            letter = currentText.slice(0, ++index);
+        }
+
+        typewriterElement.textContent = letter;
+        typewriterElement.style.opacity = 1;
+
+        if (!isDeleting && letter.length === currentText.length) {
+            setTimeout(() => {
+                isDeleting = true;
+                setTimeout(type, 100); 
+            }, 2000); 
+        } else if (isDeleting && letter.length === 0) {
+            isDeleting = false;
+            count++;
+            setTimeout(type, 500); 
+        } else {
+            setTimeout(type, isDeleting ? 50 : 100);
+        }
+    }
+
+    type();
+
+    $('#search-input').on('focus', function() {
+        $('#search-history-dropdown').show();
+    });
+
+    $('#search-input').on('blur', function() {
+        setTimeout(() => { $('#search-history-dropdown').hide(); }, 200);
+    });
+
+    $('.search-history-item').on('click', function() {
+        const searchQuery = $(this).text();
+        $('#search-input').val(searchQuery);
+        $('#search-form').submit();
+    });
+
+    $(document).on('click', '.recently-blog-image, .this_month-blog-title', function() {
+        const postId = $(this).data('id');
+        window.location.href = `/blog-page/${postId}`;
+    });
+});
+</script>
